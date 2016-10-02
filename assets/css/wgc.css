@@ -685,3 +685,58 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
+/* CALENDAR */
+
+
+.highlight{
+    background: red;
+    color: white;
+    font-weight: bold;
+}
+
+.contenido_hoy{
+    background: #fb8c00;
+    color: white; 
+    font-size: 18px;
+    padding: 5px;
+}
+
+.contenido{
+    background: #fb8c00;
+    color: white;    
+    font-size: 18px;
+    padding: 5px;
+}
+ 
+.dias td{
+    width: 90px;
+    height: 90px;
+    background: #fafafa;
+    text-align: left;
+    vertical-align: top;
+    cursor: pointer;
+}
+ 
+.dias td:hover{
+    background: #a397e0;
+    color: #111;
+    font-weight: bold;
+}
+ 
+.dias td .dias{
+    text-align: left;
+}
+ 
+.dias .hoy{
+    background: red;
+    color: white;
+    
+
+}
+
+#calendario{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

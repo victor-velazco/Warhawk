@@ -146,4 +146,15 @@ class GeneralModel extends CI_Model {
         return $this->db->insert_id();
     }
 
+    function getAboutData($id){
+        $this->db->from('alumni');
+        $this->db->join('persons', 'persons.person_id = alumni.person_id'); 
+        $this->db->join('countries', 'countries.country_id = alumni.current_country_id'); 
+        $this->db->join('occupations', 'occupations.occupation_id = alumni.occupation_id'); 
+        $this->db->join('cities', 'cities.city_id = alumni.current_city_id'); 
+        $this->db->where('alumni_id', $id);        
+        $query = $this->db->get();        
+        return $query->row();        
+     
+    }    
 }

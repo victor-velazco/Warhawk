@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
         <div class="row medium-size">
             <div class="col-lg-10 col-md-6 col-sm-12 slider">
-                <div><img class="all-width" src="assets/img/back1.png" /></div>
-                <div><img class="all-width" src="assets/img/group1.jpg" /></div>
-                <div><img class="all-width" src="assets/img/group2.jpg" /></div>
+                <div><img class="all-width" src="<?= base_url() ?>assets/img/back1.png" /></div>
+                <div><img class="all-width" src="<?= base_url() ?>assets/img/group1.jpg" /></div>
+                <div><img class="all-width" src="<?= base_url() ?>assets/img/group2.jpg" /></div>
             </div>
             <div class="fixed back-purple">
                 <h2 align="center" class="oswald upper">First University Update Headline</h4>
@@ -60,19 +60,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="panel-body middle-panel">
                             <div class="row margin10">
-                                <img src="assets/img/profile-small1.png">
+                                <img src="<?= base_url() ?>assets/img/profile-small1.png">
                                 <strong>Jane Smith</strong>
                                 Updated her current job
                             </div>
                             <hr />
                             <div class="row margin10">
-                                <img src="assets/img/profile-small2.png">
+                                <img src="<?= base_url() ?>assets/img/profile-small2.png">
                                 <strong>Chris Johnson</strong>
                                 Is traveling to Mexico
                             </div>
                             <hr />
                             <div class="row margin10">
-                                <img src="assets/img/profile-small3.png">
+                                <img src="<?= base_url() ?>assets/img/profile-small3.png">
                                 <strong>Amanda McCarthy</strong>
                                 Added a new picture
                             </div>
@@ -144,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="panel">
                         <div class="panel-heading padding-profile-picture">
                             <div class="row">
-                                <img src="assets/img/profile-img.png" />
+                                <img src="<?= base_url() ?>assets/img/profile-img.png" />
                             </div>
                         </div>
                         <div class="panel-body">

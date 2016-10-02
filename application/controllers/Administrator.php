@@ -36,7 +36,8 @@ class Administrator extends CI_Controller {
 		$data['side'] = "dashboard/side/".str_replace(" ", "", $this->profile);
 		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/dashboard";
 		$this->load->view('dashboard/template',$data);
-	}
+	}   
+                         
 
 	public function createUser() {
 		if (isset($_POST['register_firstname'])) {

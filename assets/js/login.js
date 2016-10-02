@@ -14,7 +14,7 @@ $(function() {
                 var $lg_username=$('#login_username').val();
                 var $lg_password=$('#login_password').val();
 
-                $.post("/wgc/index.php/welcome/verpass",
+                $.post("/wgc/index.php/Welcome/verPass",
                 {
                     "userid": $lg_username,
                     "password": $lg_password

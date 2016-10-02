@@ -27,6 +27,16 @@ class Welcome extends CI_Controller {
 		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
 		$this->load->view('template/template', $data);
 	}
+        
+	public function about($id = NULL){
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Site';
+		$data['the_view'] = 'about';
+		$data['genders'] = $this->GeneralModel->loadGenders();
+		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+                $data['about'] = $this->GeneralModel->getAboutData($id);
+		$this->load->view('template/template', $data);
+	}        
 
 	public function verPass(){
 		$userid = $_POST['userid'];

@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="<?php echo $this->config->base_url(); ?>assets/img/uwwLogo.jpg" /></a>
+                <a class="navbar-brand" href="<?= base_url() . 'index.php/welcome' ?>"><img src="<?php echo $this->config->base_url(); ?>assets/img/uwwLogo.jpg" /></a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
