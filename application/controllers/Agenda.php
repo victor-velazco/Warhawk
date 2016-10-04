@@ -22,8 +22,8 @@ class Agenda extends CI_Controller{
         
         $data['title'] = 'Warhawk Global Connect Site';
         $data['the_view'] = 'calendar';        
-        //$data['genders'] = $this->CalModel->GeneralModel->loadGenders();
-        //$data['profiles'] = $this->CalModel->GeneralModel->loadProfilesNoAdmin();
+        $data['genders'] = $this->CalModel->GeneralModel->loadGenders();
+        $data['profiles'] = $this->CalModel->GeneralModel->loadProfilesNoAdmin();
         
         $this->load->view('template/template', $data);                       
     }
@@ -34,7 +34,7 @@ class Agenda extends CI_Controller{
             'evento'=>$this->input->post('evento')
         );
         
-        $error = $this->cal->addEvento($data);
+        $error = $this->CalModel->addEvento($data);
         if ($error['code'] === 0){
             echo '<div class="card-panel green darken-3">Evento registrado correctamente!</div>';
             //redirect(base_url('agenda/index/'.$this->uri->segment(3).'/'.$this->uri->segment(4) . '#acciones'));

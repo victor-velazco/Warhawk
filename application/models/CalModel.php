@@ -69,10 +69,11 @@ class CalModel extends CI_Model{
     }
     
     public function addEvento($data){
-        $this->db->insert('eventos', 
+        $this->db->insert('events', 
             array(
-                'fecha' => $data['fecha'], 
-                'evento' => $data['evento'],
+                'person_id' => $this->session->userdata('data')['person_id'], 
+                'date' => $data['fecha'], 
+                'events' => $data['evento'],
             ));        
         return $error = $this->db->error();
     }     
@@ -90,10 +91,9 @@ class CalModel extends CI_Model{
             //01,02,03 etc le quitamos el 0 y mostramos el siguiente número
             //si no lo hacemos así nuestro calendario no mostrará los resultados
             //de los días del 1 al 9
-            $index = ltrim(substr($row->fecha, 8, 2), '0');
+            $index = ltrim(substr($row->date, 8, 2), '0');
             //datos calendario contiene la fila del comentario del evento de ese día
-            $datos_cal[$index] = $row->evento;
-           
+            $datos_cal[$index] = $row->events;           
         }
         //devolvemos los datos y así ya podemos pasarle estos datos al método genera_calendario($year, $month)
         return $datos_cal;

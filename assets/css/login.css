@@ -2,6 +2,10 @@
     width: 350px;
 }
 
+#event-modal .modal-dialog {
+    width: 350px;
+}
+
 #login-modal input[type=text], input[type=password], input[type=tel], input[type=email], select {
 	margin-top: 10px;
 }

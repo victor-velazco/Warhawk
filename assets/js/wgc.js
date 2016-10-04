@@ -11,6 +11,7 @@ $(function() {
         centerPadding: '60px',
         arrows: false
     });
+       
 });
 
 //Loads the correct sidebar on window load,

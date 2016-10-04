@@ -40,7 +40,7 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <?php
+                    <?php      
                         $href = $this->config->base_url();
                         if ($this->session->userdata('data') && $this->session->userdata('data')['profile_desc']) {
                             $href = $this->config->base_url() . "index.php/" .strtolower($this->session->userdata('data')['profile_desc']) . "/dashboard";
@@ -112,7 +112,7 @@
                         <?php 
                             } else {
                         ?>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="<?= base_url() ?>index.php/administrator/profile/"<?= $this->session->userdata('data')['person_id'] ?>><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>

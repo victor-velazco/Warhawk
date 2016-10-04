@@ -704,8 +704,9 @@ table.dataTable thead .sorting:after {
 .contenido{
     background: #fb8c00;
     color: white;    
-    font-size: 18px;
+    font-size: 14px;
     padding: 5px;
+    font-weight: normal;
 }
  
 .dias td{

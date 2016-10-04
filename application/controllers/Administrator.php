@@ -96,6 +96,16 @@ class Administrator extends CI_Controller {
 		$this->load->view('dashboard/template',$data);
 	}
 
+	public function profile($id = NULL) {
+		$data['title'] = ucwords("Dashboard");
+		$this->load->model('AdministratorModel');
+		$data['profile'] = $this->profile;
+		$data['alumni'] = $this->AdministratorModel->getOutstandingAlumni($id);
+		$data['side'] = "dashboard/side/".str_replace(" ", "", $this->profile);
+		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/profile";
+		$this->load->view('dashboard/template',$data);
+	}        
+        
 	public function authorizeAlumni() {
 		$value = $_POST['authorize'];
 		if ($value==1) {

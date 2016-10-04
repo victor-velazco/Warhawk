@@ -157,4 +157,10 @@ class GeneralModel extends CI_Model {
         return $query->row();        
      
     }    
+    
+    public function setSelect($field, $select){
+        if($field == $select){
+            return "selected";
+        }
+    }    
 }
