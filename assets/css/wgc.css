@@ -492,6 +492,14 @@ body {
     background-color: #cfcfcf;
 }
 
+.panel-gray5 {
+    background-color: #4f2882;
+}
+
+.panel-gray6{
+    background-color: #c6c5c2;
+}
+
 .middle-panel {
     min-height: 260px;
     max-height: 260px;
@@ -695,14 +703,14 @@ table.dataTable thead .sorting:after {
 }
 
 .contenido_hoy{
-    background: #fb8c00;
+    background: #48347a;
     color: white; 
     font-size: 18px;
     padding: 5px;
 }
 
 .contenido{
-    background: #fb8c00;
+    background: #48347a;
     color: white;    
     font-size: 14px;
     padding: 5px;
@@ -741,3 +749,55 @@ table.dataTable thead .sorting:after {
     margin-right: auto;
 }
 
+a.job{
+    color: white;
+}
+
+
+.select-job{
+    margin-top: 0px;
+}
+
+.div-job{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.bg-f2f1ea{
+    background: #f2f1ea;
+}
+
+.bg-c6c5c2{
+    background: #c6c5c2;
+}
+
+.chk-f2f1ea{ 
+    width: 219px;
+    font-size: 1.4em;
+    background: #f2f1ea;
+    text-align: center;
+    height: 45px;
+    padding-top: 10px;
+    margin-left: 0px !important;
+    color: #99999b;
+}
+
+.chk-c6c5c2{ 
+    width: 219px;
+    font-size: 1.4em;
+    background: #c6c5c2;
+    text-align: center;
+    height: 45px;
+    padding-top: 10px;
+    margin-left: 0px !important;
+    color: #99999b;
+}
+
+.table-borderless td,
+.table-borderless th {
+    border: 0 !important;
+}
+
+.td-row{
+    vertical-align: middle !important;
+}

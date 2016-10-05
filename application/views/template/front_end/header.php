@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="<?php echo $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
     <link rel="icon" href="<?php echo $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
     <style type="text/css">
-        // Override bootstrap.less
+        /* Override bootstrap.less */
         #navbar-big {
             min-height: 100px;
         }
@@ -76,7 +76,7 @@
                 ?>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?= base_url() ?>index.php/jobs">
                         <!-- Job board -->
                         <i class="fa fa-briefcase fa-3x"></i> 
                     </a>

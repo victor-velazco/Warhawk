@@ -122,6 +122,8 @@ $(function() {
                 $('#register-form').attr('action', '/wgc/index.php/welcome/register_user');
                 $('#register-form').submit();
                 break;
+            case "form-busca":
+                $('#form-busca').submit();
             default:
                 return false;
         }
