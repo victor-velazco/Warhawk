@@ -6,37 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php
             $this->load->view('include/jobs-menu.php');
             ?>            
-        <br><br>      
-        <div class="container">
-          <?= form_open(base_url().'index.php/jobs/index/', 'id="form-busca"'); ?> 
-            <div class="form-group">
-                <div class="col-xs-7 div-job">
-                    <input class="form-control input-lg bg-f2f1ea" type="text" name="title" id="title" value="<?= $this->input->post('title') ?>" placeholder="job title or keyword">
-                </div>
-                <div class="col-xs-4 div-job">
-                    <select name="category" class="form-control input-lg select-job bg-c6c5c2">
-                        <option disabled selected>category</option>
-                        <option>Category 1</option>
-                    </select>              
-                </div>
-                <div class="col-xs-1 div-job">
-                    <button type="submit" id="form-job-search" class="btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-search"></span></button>
-                </div>                
-                <br><br>
-            </div>        
-            <div class="form-group">
-                <div class="col-xs-5 div-job">
-                    <input name="location" value="<?= $this->input->post('location') ?>" class="form-control input-lg bg-c6c5c2" type="text" placeholder="location">
-                </div>
-                <div class="col-xs-7 div-job">
-                    <label class="checkbox-inline chk-f2f1ea"><input type="checkbox" name="full-time" value="full time" <?= $this->GeneralModel->setCheck('full time', $this->input->post('full-time')); ?>>full time</label>
-                    <label class="checkbox-inline chk-c6c5c2"><input type="checkbox" name="part-time" value="part time" <?= $this->GeneralModel->setCheck('part time', $this->input->post('part-time')); ?>>part time</label>
-                    <label class="checkbox-inline chk-f2f1ea"><input type="checkbox" name="internship" value="internship" <?= $this->GeneralModel->setCheck('internship', $this->input->post('internship')); ?>>internship</label>                       
 
-                </div>              
-            </div>               
-          <?= form_close() ?>
-        </div>
         <br><br>
         <div class="container-fluid">
             <?php   
@@ -67,8 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <button type="button" onclick="if (confirm(&quot;Really you want to apply for the position of [ <?= $row->title ?> ]?&quot;)) { window.location.href = '<?= base_url() . "index.php/jobs/apply/" . $row->jobs_id ?>' } event.returnValue = false; return false;" id="apply" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
                                <?php
                                }
-                               ?>                                                                
-                            </td>
+                               ?>                              </td>
                           </tr>
                           <tr>
                             <td  class="raleway"><?= $row->company ?></td>
@@ -95,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             ?>
             <div class="row">
-                <div class="col-md-12"><?php // $pagination; ?></div>
+                <div class="col-md-12"><?php  $pagination; ?></div>
             </div>    
        
         </div>                                  
@@ -104,3 +73,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ?>
         <!-- /.featured alumni -->
         <script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>            
+   

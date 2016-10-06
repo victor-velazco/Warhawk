@@ -36,11 +36,11 @@ class Agenda extends CI_Controller{
         
         $error = $this->CalModel->addEvento($data);
         if ($error['code'] === 0){
-            echo '<div class="card-panel green darken-3">Evento registrado correctamente!</div>';
+            //echo '<div class="card-panel green darken-3">Evento registrado correctamente!</div>';
             //redirect(base_url('agenda/index/'.$this->uri->segment(3).'/'.$this->uri->segment(4) . '#acciones'));
             
         }else{
-            echo '<div class="card-panel red accent-4">Error al registrar el Evento!</div>';
+            //echo '<div class="card-panel red accent-4">Error al registrar el Evento!</div>';
             //redirect(base_url('agenda/index/'.$this->uri->segment(3).'/'.$this->uri->segment(4) . '#acciones'));
         }        
         

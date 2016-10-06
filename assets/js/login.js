@@ -124,6 +124,9 @@ $(function() {
                 break;
             case "form-busca":
                 $('#form-busca').submit();
+                
+            case "form-post-job":   
+                $('#form-post-job').submit();
             default:
                 return false;
         }

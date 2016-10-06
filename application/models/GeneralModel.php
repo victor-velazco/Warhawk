@@ -66,6 +66,13 @@ class GeneralModel extends CI_Model {
 
         return $countries;
     }
+    
+    function loadCities(){
+        $query = $this->db->query("SELECT city_id, city_name from cities");
+        $countries = ( $query->num_rows() >= 1 ) ? $query->result() : null;
+
+        return $countries;
+    }    
 
     function loadStatuses(){
         $query = $this->db->query("SELECT status_id, status from statuses");
@@ -162,5 +169,11 @@ class GeneralModel extends CI_Model {
         if($field == $select){
             return "selected";
         }
-    }    
+    }  
+    
+    public function setCheck($field, $select){
+        if($field == $select){
+            return "checked";
+        }
+    }      
 }
