@@ -75,10 +75,7 @@
                         <input id="register_email" name="register_email" class="form-control" type="email" placeholder="E-Mail" required>
                         <input id="register_password" name="register_password" class="form-control" type="password" placeholder="Password" required>
                         <input id="register_confirm_password" class="form-control" type="password" placeholder="Confirm Password" required>
-                        <div class="form-group">
-                            <input id="register_phone" name="register_phone" class="form-control" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" placeholder="Phone Number (xxx-xxx-xxxx)" data-error="Please match format (xxx-xxx-xxxx)" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
+                        <input id="register_phone" name="register_phone" class="form-control" type="tel" placeholder="Phone Number">
                         <select class="form-control" id="register_gender" name="register_gender" required>
                             <option value="-1">Select a Gender</option>
                             <?php foreach ($genders as $value) {

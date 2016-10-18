@@ -93,11 +93,6 @@ $(function() {
                     msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Passwords do not match!");
                     return false;
                 }
-                if ($rg_phone==="" || $rg_phone.trim()==="") {
-                    $('#register_phone').val("");
-                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Please provide the phone number.");
-                    return false;
-                }
                 if ($rg_gender==-1) {
                     msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Please provide the gender.");
                     return false;

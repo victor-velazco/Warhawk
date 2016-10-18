@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
         <div class="row medium-size">
             <div class="col-lg-10 col-md-6 col-sm-12 slider">
-                <div><img class="all-width" src="<?= base_url() ?>assets/img/back1.png" /></div>
+                <div><img class="all-width" src="<?= base_url() ?>assets/img/slider1.jpg" /></div>
                 <div><img class="all-width" src="<?= base_url() ?>assets/img/group1.jpg" /></div>
                 <div><img class="all-width" src="<?= base_url() ?>assets/img/group2.jpg" /></div>
             </div>
@@ -34,9 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              <div class="col-lg-3 col-md-6 col-sm-10 no-padding">
                 <select name="category" class="form-input dark-gray special-select">
                     <option value="-1">No Category</option>
-                    <option value="0">Category #1</option>
-                    <option value="1">Category #2</option>
-                    <option value="2">Category #3</option>
+                    <?php   
+                    foreach ($categories as $key => $value) {  
+                        echo "<option value=". $value->category_id. ">". $value->category_desc . "</option>";
+                    }
+                    ?>   
                 </select>
             </div>
             <div class="col-sm-1 no-padding width80">
@@ -47,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <!-- 4 Panels for info. -->
-        <div class="row">
+        <div class="row oswald" >
             <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
                 <div class="col-lg-12 col-md-12 no-padding">
                     <div class="panel panel-gray1">
@@ -139,23 +141,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 no-padding">
+            <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
                 <div class="col-lg-12 col-md-12 no-padding">
                     <div class="panel">
                         <div class="panel-heading padding-profile-picture">
-                            <div class="row">
-                                <img src="<?= base_url() ?>assets/img/profile-img.png" />
-                            </div>
+                            <img src="<?= base_url() ?>assets/img/profile-img.png" />
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding-top: 5px">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <strong>Sara Amiri</strong>
                                 </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                <div class="col-lg-2 col-md-2 col-sm-2">
                                     <i class="fa fa-user fa-2x fa-inverse panel-gray2 padding-icons"></i>
                                 </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                <div class="col-lg-2 col-md-2 col-sm-2 ">
                                    <i class="fa fa-cogs fa-2x fa-inverse panel-gray3 padding-icons"></i> 
                                 </div>
                             </div>
@@ -170,8 +170,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ?>
         <!-- /.map -->
         <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12">
-
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <img src="<?= base_url() ?>assets/img/map_demo.png" />
             </div>
         </div>
         <!-- /.map -->

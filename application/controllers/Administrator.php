@@ -131,6 +131,11 @@ class Administrator extends CI_Controller {
 		$this->email->send();
 		$this->outstanding();
 	}
+
+	public function feature($id = NULL, $value) {
+		$this->load->model('AdministratorModel');
+		echo json_encode(array('result' => $this->AdministratorModel->setAlumniFeatured($id, $value))); 
+	}      
 /*
 	public function index(){
 		$data['person'] = $this->verPerfil($this->perfil);

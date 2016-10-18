@@ -40,7 +40,7 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <?php      
+                    <?php 
                         $href = $this->config->base_url();
                         if ($this->session->userdata('data') && $this->session->userdata('data')['profile_desc']) {
                             $href = $this->config->base_url() . "index.php/" .strtolower($this->session->userdata('data')['profile_desc']) . "/dashboard";
@@ -79,6 +79,12 @@
                     <a href="<?= base_url() ?>index.php/jobs">
                         <!-- Job board -->
                         <i class="fa fa-briefcase fa-3x"></i> 
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>index.php/agenda">
+                        <!-- Calendar -->
+                        <i class="fa fa-calendar fa-3x"></i> 
                     </a>
                 </li>
                 <li>

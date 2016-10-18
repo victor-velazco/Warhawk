@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/index.html"><img src="<?php echo $this->config->base_url(); ?>assets/img/uwwLogo.jpg" /></a>
+                <a class="navbar-brand" href="<?php echo $this->config->base_url(); ?>index.php"><img src="<?php echo $this->config->base_url(); ?>assets/img/uwwLogo.jpg" /></a>
             </div>
             <!-- /.navbar-header -->
 

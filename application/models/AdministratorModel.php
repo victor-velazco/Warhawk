@@ -30,7 +30,7 @@
         }
 
         public function getOutstandingAlumniList() {
-            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, p.email, a.status_id, s.status, a.university, a.graduation_yr, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
+            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, p.email, a.status_id, s.status, a.university, a.graduation_yr, a.featured, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
             FROM alumni a 
             LEFT JOIN persons p ON p.person_id=a.person_id 
             LEFT JOIN statuses s ON s.status_id=a.status_id 
@@ -50,7 +50,7 @@
         }
 
         public function getOutstandingAlumni($id) {
-            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, p.email, a.status_id, s.status, a.university, a.graduation_yr, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
+            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, p.email, a.status_id, s.status, a.university, a.graduation_yr, a.featured, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
             FROM alumni a 
             LEFT JOIN persons p ON p.person_id=a.person_id 
             LEFT JOIN statuses s ON s.status_id=a.status_id 
@@ -70,7 +70,7 @@
         }
 
         public function getAuthorizedAlumniList() {
-            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, a.status_id, s.status, a.university, a.graduation_yr, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
+            $qryList = "SELECT a.alumni_id, a.person_id, p.first_name, p.last_name, a.status_id, s.status, a.university, a.graduation_yr, a.featured, a.origin_country_id, oc.country_name as orig_country_name, a.origin_city_id, ocy.city_name as orig_city_name, a.current_country_id, cc.country_name as curr_country_name, ccy.city_name as curr_city_name, a.current_city_id, a.occupation_id, o.description as occupation, a.company_id, c.company_name, a.education_level_id, el.level 
                 FROM alumni a 
                 LEFT JOIN persons p ON p.person_id=a.person_id 
                 LEFT JOIN statuses s ON s.status_id=a.status_id 
@@ -96,6 +96,14 @@
             );
             $this->db->where('alumni_id', $id);
             $this->db->update('alumni', $data);
+        }
+
+        public function setAlumniFeatured($id, $value) {
+            $data = array(
+                'featured' => $value
+            );
+            $this->db->where('alumni_id', $id);
+            return $this->db->update('alumni', $data);
         }
 
        private function _cryptPass($password){

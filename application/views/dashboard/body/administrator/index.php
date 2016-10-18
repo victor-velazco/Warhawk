@@ -17,12 +17,15 @@
 				<tbody>
 					<?php
 						foreach ($list as $key => $value) {
+							$featured = ($value->featured!=0)?"ok-sign":"remove-sign";
+							$btn_type = ($value->featured!=0)?"success":"danger";
+							$val = ($value->featured!=0)?'0':'1';
 							echo "<tr><td>". $value->alumni_id .
 								"</td><td><a href='show_outstanding_alumni_data/". 
 							$value->alumni_id ."'>". $value->first_name . " " . 
 							$value->last_name ."</a></td><td>". $value->graduation_yr ."</td><td>". 
 							$value->orig_country_name ." - ". $value->orig_city_name ."</td><td>".
-							$value->curr_country_name ." - ". $value->curr_city_name ."</td><td></tr>";
+							$value->curr_country_name ." - ". $value->curr_city_name ."</td></tr>";
 						}
 					
 					?>

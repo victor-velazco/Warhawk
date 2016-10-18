@@ -3,13 +3,15 @@ $(function() {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 1500,
         infinite: true,
         fade: true,
         cssEase: 'linear',
         centerMode: true,
         centerPadding: '60px',
-        arrows: false
+        lazyLoad: 'ondemand',
+        arrows: false,
+        adaptiveHeight: true
     });
        
 });

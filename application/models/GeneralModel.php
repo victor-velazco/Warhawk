@@ -60,6 +60,13 @@ class GeneralModel extends CI_Model {
         return $genders;
     }
 
+    function loadFaturedStudents(){
+        $query = $this->db->query("SELECT alumni_id FROM alumni where featured=1");
+        $genders = ( $query->num_rows() >= 1 ) ? $query->result() : null;
+
+        return $genders;
+    }
+
     function loadCountries(){
         $query = $this->db->query("SELECT country_id, country_name from countries");
         $countries = ( $query->num_rows() >= 1 ) ? $query->result() : null;
@@ -114,6 +121,20 @@ class GeneralModel extends CI_Model {
         $profiles = ( $query->num_rows() >= 1 ) ? $query->result() : null;
 
         return $profiles;
+    }
+
+    function loadCategories(){
+        $query = $this->db->query("SELECT category_id, category_desc from categories where type=1;");
+        $categories = ( $query->num_rows() >= 1 ) ? $query->result() : null;
+
+        return $categories;
+    }
+
+    function loadJobCategories(){
+        $query = $this->db->query("SELECT category_id, category_desc from categories where type=2;");
+        $categories = ( $query->num_rows() >= 1 ) ? $query->result() : null;
+
+        return $categories;
     }
 
     function loadCitiesByCountry($country_id){

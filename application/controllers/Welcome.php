@@ -25,6 +25,7 @@ class Welcome extends CI_Controller {
 		$data['the_view'] = 'index';
 		$data['genders'] = $this->GeneralModel->loadGenders();
 		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+		$data['categories'] = $this->GeneralModel->loadCategories();
 		$this->load->view('template/template', $data);
 	}
         
@@ -100,6 +101,7 @@ class Welcome extends CI_Controller {
 		$person_id = $this->PersonModel->insertPerson($personData);
 		$personData['person_id']=$person_id;
 		$user_data['login'] = true;
+		$personData['profile_desc'] = "alumni";
 		//$pData = print_r($personData);
 		//error_log($pData);
 		$user_data['data'] = $personData;
