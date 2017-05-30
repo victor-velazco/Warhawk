@@ -9,16 +9,16 @@
 	                    <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
 	                    <span id="text-register-msg">Register an account.</span>
 	                </div>
-					<input id="register_firstname" name="register_firstname" class="form-control" type="text" placeholder="First Name" required>
-	                <input id="register_middlename" name="register_middlename" class="form-control" type="text" placeholder="Middle Name [Optional]">
-	                <input id="register_lastname" name="register_lastname" class="form-control" type="text" placeholder="Last Name" required>
-	                <input id="register_username" name="register_username" class="form-control" type="text" placeholder="Username" required>
-	                <input id="register_email" name="register_email" class="form-control" type="email" placeholder="E-Mail" required>
+                        <input id="register_firstname" name="register_firstname" class="form-control input-modal" type="text" placeholder="First Name" required>
+	                <input id="register_middlename" name="register_middlename" class="form-control input-modal" type="text" placeholder="Middle Name [Optional]">
+	                <input id="register_lastname" name="register_lastname" class="form-control input-modal" type="text" placeholder="Last Name" required>
+	                <input id="register_username" name="register_username" class="form-control input-modal" type="text" placeholder="Username" required>
+	                <input id="register_email" name="register_email" class="form-control input-modal" type="email" placeholder="E-Mail" required>
 	                <div class="form-group">
-	                    <input id="register_phone" name="register_phone" class="form-control" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" placeholder="Phone Number (xxx-xxx-xxxx)" data-error="Please match format (xxx-xxx-xxxx)" required>
+	                    <input id="register_phone" name="register_phone" class="form-control input-modal" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" placeholder="Phone Number (xxx-xxx-xxxx)" data-error="Please match format (xxx-xxx-xxxx)" required>
 	                    <div class="help-block with-errors"></div>
 	                </div>
-	                <select class="form-control" id="register_gender" name="register_gender" required>
+	                <select class="form-control input-modal" id="register_gender" name="register_gender" required>
 	                    <option value="-1">Select a Gender</option>
 	                    <?php foreach ($genders as $value) {
 	                    ?>
@@ -27,7 +27,7 @@
 	                    }
 	                    ?>
 	                </select>
-	                <select class="form-control" id="register_status" name="register_status" required>
+	                <select class="form-control input-modal" id="register_status" name="register_status" required>
 	                    <option value="-1">Select an Alumni Status</option>
 	                    <?php foreach ($statuses as $value) {
 	                    ?>
@@ -44,6 +44,8 @@
 			    </div>
 	        </form>
 	        <!-- End | Register Form -->	        
+        <div class="space-blank"></div>
+        <div class="space-blank"></div>
 		</div>
-	</div>
-	<script src="<?php echo $this->config->base_url(); ?>assets/js/register_user.js"></script>
+	</div>	
+	</div>        

@@ -75,96 +75,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                    
                 </div>
             </div> 
-
+        <div class="space-blank"></div><div class="space-blank"></div><div class="space-blank"></div>
 
         <?php       
-            include_once('template/login.php');
-            include_once('template/event.php');
+             $this->load->view('template/login.php');
+              $this->load->view('template/event.php');
         ?>
 
 
-        <!-- /.featured alumni -->
-        <script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){  
-                $('#mes').on('change', function() {
-                  window.location.href = '<?= base_url() . "index.php/agenda/index/" . $this->uri->segment(3) ?>/' + this.value;
-                });
-                
-                $('#anio').on('change', function() {
-                  window.location.href = '<?= base_url() . "index.php/agenda/index/" ?>' + this.value + '/<?=  $this->uri->segment(4) ?>';
-                });                 
-                
-                $("#calendario").on("click", "td", function(event) {        
-                    event.preventDefault();
-                    //obtenemos el número del día
-                    var num_dia = $(this).find('.num_dia').html();                             
-                    var hoy = $(this).find('.highlight').html();    
-                    //obtenemos el año a través del campo oculto del formulario
-                    var year = $(".year").val();
-                    //obtenemos el mes a través del campo oculto del formulario
-                    var month = $(".month").val();
-                    //anteponemos el 0 si es un sólo número para poder trabajar
-                    //correctamente la fecha
-                    if(hoy){                    
-                        if(hoy.length === 1){
-                            hoy = '0'+hoy;
-                        }
-                        //anteponemos el 0 si es un sólo número para poder trabajar
-                        //correctamente la fecha
-                        if(month.length === 1){
-                            month = '0'+month;
-                        }
-                        //creamos la fecha sobre la que el usuario ha pulsado
-                        var fecha = year + '-' + month  + '-' +  hoy;                        
-                    }else if(num_dia){
-                        if(num_dia.length === 1){
-                            num_dia = '0'+num_dia;
-                        }
-                        //anteponemos el 0 si es un sólo número para poder trabajar
-                        //correctamente la fecha
-                        if(month.length === 1){
-                            month = '0'+month;
-                        }
-                        //creamos la fecha sobre la que el usuario ha pulsado
-                        var fecha = year + '-' + month  + '-' +  num_dia;                     
-                    }
-                    $('#event_date').val(fecha);
-                    
-                   <?php
-                   if ($this->session->userdata('data') && $this->session->userdata('data')['profile_desc']) {
-                   ?>
-                    $('#event-modal').modal("show");
-                   <?php
-                   }
-                   ?>
-                });
-            
-                
-                $( '#addEvent' ).click(function() { 
-                    event.preventDefault();                                                            
-                    var fecha = $("input#event_date").val();
-                    var evento = $("input#detail_event").val(); 
-                                          
-                    $.ajax({
-                        url:        '<?= base_url(); ?>index.php/agenda/add',
-                        type:       'POST',
-                        //dataType:   'json',
-                        data:       {fecha:fecha, evento:evento},
-                        success:    function(code){                                
-                            $("input#evento").val('');
-                            setTimeout(function(){
-                               window.location.reload(1);
-                            }, 800);                                
-                        }
-                    }); 
-                        
-                });                    
-                
-                
-                
-                
-                
-            });                 
-            
-        </script>        
+        </div>
+</div>

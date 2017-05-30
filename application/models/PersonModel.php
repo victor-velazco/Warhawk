@@ -26,21 +26,32 @@ class PersonModel extends CI_Model {
     
     function getPersonsData($userid){
 
-    	$consulta = "	SELECT pe.first_name, pe.middle_name, pe.last_name, pe.second_last_name, pe.profile_id,  pe.email, pe.userid, pe.person_id, pe.pass_created,sch.school_id,sch.school_name
-						FROM persons pe
-						JOIN schools sch ON (pe.school_id = sch.school_id)
-						WHERE pe.userid = '$userid'
-					";
+        $qryPerson = "  SELECT a.alumni_id, a.status_id, p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
+                        FROM persons p
+                        JOIN profiles pr ON p.profile_id = pr.profile_id
+                        JOIN genders g ON p.gender_id = g.gender_id
+                        LEFT JOIN alumni a on a.person_id=p.person_id and a.status_id=1
+                        WHERE p.username = '$userid'
+                    ";
 
-        $query = $this->db->query($consulta);
-        $person = ( $query->num_rows() == 1 ) ? $query->row() : false;
-
-        $query = $this->db->query("SELECT profile_description FROM profiles WHERE profile_id = '$person->profile_id';");
-        $profile = ( $query->num_rows() == 1 ) ? $query->row() : false;
-
-        $person->profile_description = strtolower($profile->profile_description);
+        $query = $this->db->query($qryPerson);
+        $person = ( $query->num_rows() == 1 ) ? $query->row_array() : false;
         return $person;
     }
+
+    function getPersonsDataLinkedIn($id){
+
+        $qryPerson = "  SELECT a.alumni_id, a.status_id, p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
+            FROM persons p
+            JOIN profiles pr ON p.profile_id = pr.profile_id
+            JOIN genders g ON p.gender_id = g.gender_id
+            LEFT JOIN alumni a on a.person_id=p.person_id
+            WHERE p.linkedin_id = '$id'";
+
+        $query = $this->db->query($qryPerson);
+        return ( $query->num_rows() == 1 ) ? $query->row_array() : false;
+    }
+
 
     
     function resetPassword($userid, $pass_created){
@@ -72,6 +83,16 @@ class PersonModel extends CI_Model {
     function insertAlumni($alumniData) {
         $this->db->insert('alumni', $alumniData);
         return $this->db->insert_id();
+    }
+
+    function validateEmail($email) {
+        $query = $this->db->query("select 1 from persons where email=?",array($email));
+        return ( $query->num_rows() >= 1 );
+    }
+
+    function validateUsername($username) {
+        $query = $this->db->query("select 1 from persons where username=?",array($username));
+        return ( $query->num_rows() >= 1 );
     }
 
 }

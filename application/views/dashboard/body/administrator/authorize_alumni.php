@@ -2,9 +2,9 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	if (isset($alumni)) {
 ?>
-		<div class="col-md-9 container" style="top:102px; padding-left:2px; padding-right:2px;">
+		<div class="col-md-9 container oswald" style="top:102px; padding-left:2px; padding-right:2px;">
 	        <h3 align="center">Outstanding Alumni to be authorized</h3>
-			<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" style="width:60%">
+			<table  class="table table-striped table-bordered">
 				<tr>
 					<td><b>Id</b></td><td><?php echo $alumni[0]->alumni_id ?></td>
 				</tr>
@@ -45,10 +45,11 @@
 					</form>
 				</tr>
 			</table>
+	        <div class="space-blank"></div>
+	        <div class="space-blank"></div>
 		</div>
 <?php
 	}
 ?>
 	</div>
-	<script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>
-	<script src="<?php echo $this->config->base_url(); ?>assets/js/authorize.js"></script>
+	</div>

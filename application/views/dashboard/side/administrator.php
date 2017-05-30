@@ -1,3 +1,4 @@
+<div class='container-fluid'>    
     <div class="row">
         <div class="col-md-3" style="top:102px; padding-left:2px; padding-right:2px;">
             <div class="profile-sidebar">
@@ -20,16 +21,16 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="active">
-                            <a href="dashboard">Alumni</a>
+                            <a href="<?= base_url() ?>/index.php/<?php echo strtolower($this->session->userdata('data')['profile_desc'])?>/dashboard">Alumni</a>
                         </li>
                         <li>
-                            <a href="outstanding">Outstanding approvals</a>
+                            <a href="<?= base_url() ?>/index.php/<?php echo strtolower($this->session->userdata('data')['profile_desc'])?>/outstanding">Outstanding approvals</a>
                         </li>
                         <li>
-                            <a href="createUser">Create new User</a>
+                            <a href="<?= base_url() ?>/index.php/<?php echo strtolower($this->session->userdata('data')['profile_desc'])?>/createUser">Create new User</a>
                         </li>
                         <li>
-                            <a href="#">Reset Alumni Password</a>
+                            <a href="<?= base_url() ?>/index.php/<?php echo strtolower($this->session->userdata('data')['profile_desc'])?>/reset_password">Reset Alumni Password</a>
                         </li>
                     </ul>
                 </div>

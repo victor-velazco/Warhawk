@@ -115,35 +115,28 @@
             return $hashed_password;
         }
 
+        function lostPass($id){
+            $query = $this->db->query("SELECT email, password FROM persons WHERE person_id = " . $id);
+            $row = $query->row();
+            if (isset($row)) {
+                $to      = $row->email;
+                $subject = 'WGC Password remember';
+                $message = '<h1>WGC Support</h1>You password is: ' . $row->password;
+                $headers = 'From: <WGC Support>support@wgc.com' . "\r\n" .
+                    'Reply-To: support@wgc.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                $headers  .= 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                return mail($to, $subject, $message, $headers);
+            }
+            else return false;
+        }
 
-/*        
-        function reportByDestination($start_dt="", $end_dt="", $person_id="") {
-        	$emptyResult[0] = array(
-        			'destination' => '-',
-        			'per_date' => '-',
-        			'per_time' => '-',
-        			'destination' => '-',
-        			'total_time' => '-'
-        	);
-        	
-        	$sql = "SELECT rms.room_name, SUM( per.time ), date_format(per.timepermission, '%Y-%m-%d') as per_date, date_format(per.timepermission, '%H') as per_time, avg(per.time) as avg_time, sum(per.time) as total_time
-				FROM permission per
-				JOIN persons pers ON per.student = pers.person_id
-				JOIN rooms rms ON per.goto = rms.room_id
-				WHERE per.timepermission IS NOT NULL
-				AND per.timepermission <>  '0000-00-00 00:00:00'";
-        	if ($start_dt!="") {
-        		$sql .= " AND per.timepermission>='".$start_dt." 00:00:00' AND per.timepermission<='".$end_dt." 23:59:59'";
-        	}
-        	if ($person_id!="") {
-        		$sql .= " AND pers.person_id in (SELECT child_person_id FROM  relationships WHERE parent_person_id =".$person_id.")";
-        	}
-        	$sql .= " group by rms.room_name, date_format(per.timepermission, '%Y-%m-%d'), date_format(per.timepermission, '%H')";
-        	$queryResult = $this->db->query($sql);
-        	$report = ( $queryResult->num_rows() > 0 ) ? $queryResult->result_array() : $emptyResult;
-        	return $report;
-       }    
-*/    	 
+        function insertHeadline($data) {
+            $this->db->insert('headlines', $data);
+            return $this->db->insert_id();
+        }
+
  }
 
 

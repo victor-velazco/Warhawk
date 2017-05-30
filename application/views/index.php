@@ -1,202 +1,127 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-    
-        <div class="row medium-size">
-            <div class="col-lg-10 col-md-6 col-sm-12 slider">
-                <div><img class="all-width" src="<?= base_url() ?>assets/img/slider1.jpg" /></div>
-                <div><img class="all-width" src="<?= base_url() ?>assets/img/group1.jpg" /></div>
-                <div><img class="all-width" src="<?= base_url() ?>assets/img/group2.jpg" /></div>
-            </div>
-            <div class="fixed back-purple">
-                <h2 align="center" class="oswald upper">First University Update Headline</h4>
-                <p class="text-justify raleway">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. </p>
-
-                <p class="text-justify raleway">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. </p>
-                <div class="row" style="position: absolute; right:10px; left:15px; bottom:10px;">
-                    <div class="col-sm-1">
-                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-1">
-                        <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-1 col-xs-offset-7">
-                        <i class="fa fa-newspaper-o fa-2x" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Search bar -->
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Warhawk Global Connect</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="<?= $this->config->base_url(); ?>assets/webroot/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?= $this->config->base_url(); ?>assets/webroot/css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>        
+        <script src="<?= $this->config->base_url(); ?>assets/webroot/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <link rel="shortcut icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
+        <link rel="icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
+    </head>
+    <body class="background_wgc">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="container"> 
+        <br />
+        <br />       
         <div class="row">
-            <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-5 col-md-5 col-sm-5 no-padding">
-                <input type="text" name="search" placeholder="Search" id="search" class="form-input light-gray"/>
-            </div>
-             <div class="col-lg-3 col-md-6 col-sm-10 no-padding">
-                <select name="category" class="form-input dark-gray special-select">
-                    <option value="-1">No Category</option>
-                    <?php   
-                    foreach ($categories as $key => $value) {  
-                        echo "<option value=". $value->category_id. ">". $value->category_desc . "</option>";
-                    }
-                    ?>   
-                </select>
-            </div>
-            <div class="col-sm-1 no-padding width80">
-                <button class="form-input-no-padding" >
-                <i class="fa fa-search fa-inverse"></i>
-                </button>
-            </div>
+            <img src="<?= $this->config->base_url(); ?>assets/webroot/img/logo_white.png">
         </div>
-
-        <!-- 4 Panels for info. -->
-        <div class="row oswald" >
-            <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
-                <div class="col-lg-12 col-md-12 no-padding">
-                    <div class="panel panel-gray1">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-md-offset-4 col-xs-offset-4 col-xs-4">
-                                    <i class="fa fa-users fa-5x fa-inverse"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body middle-panel">
-                            <div class="row margin10">
-                                <img src="<?= base_url() ?>assets/img/profile-small1.png">
-                                <strong>Jane Smith</strong>
-                                Updated her current job
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                <img src="<?= base_url() ?>assets/img/profile-small2.png">
-                                <strong>Chris Johnson</strong>
-                                Is traveling to Mexico
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                <img src="<?= base_url() ?>assets/img/profile-small3.png">
-                                <strong>Amanda McCarthy</strong>
-                                Added a new picture
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
-                <div class="col-lg-12 col-md-12 no-padding">
-                    <div class="panel panel-gray2">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-md-offset-4 col-xs-offset-4 col-md-1">
-                                    <i class="fa fa-briefcase fa-5x fa-inverse"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body middle-panel">
-                            <div class="row margin10">
-                                <strong>Marketing Director</strong><br/>
-                                ABC Marketing company
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                 <strong>Accounting Manager</strong><br/>
-                                Smith Finance, LLC
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                <strong>Lead Systems Analyst</strong><br/>
-                                Apex Technology, Inc
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
-                <div class="col-lg-12 col-md-12 no-padding">
-                    <div class="panel panel-gray3">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-md-offset-4 col-xs-offset-4 col-xs-4">
-                                    <i class="fa fa-comments fa-5x fa-inverse"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body middle-panel">
-                            <div class="row margin10">
-                                <strong>Recent Discussion</strong><br/>
-                                The most recent one....
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                 <strong>New Discussion Topic</strong><br/>
-                                The new discussion topic is....
-                            </div>
-                            <hr />
-                            <div class="row margin10">
-                                <strong>Discussion with recent comments</strong><br/>
-                                The last comment is.....
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 no-padding">
-                <div class="col-lg-12 col-md-12 no-padding">
-                    <div class="panel">
-                        <div class="panel-heading padding-profile-picture">
-                            <img src="<?= base_url() ?>assets/img/profile-img.png" />
-                        </div>
-                        <div class="panel-body" style="padding-top: 5px">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <strong>Sara Amiri</strong>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2">
-                                    <i class="fa fa-user fa-2x fa-inverse panel-gray2 padding-icons"></i>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 ">
-                                   <i class="fa fa-cogs fa-2x fa-inverse panel-gray3 padding-icons"></i> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <?php
-            include_once('template/login.php');
-        ?>
-        <!-- /.map -->
+        <br />
+        <h2 style="color: white; text-shadow: -3px 3px 3px #000000;">Warhwak Global Connect</h2>
+        <br />
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <img src="<?= base_url() ?>assets/img/map_demo.png" />
+            <div id="div-forms"  class="small_login">
+                <form id="login-form">
+                    <div class="modal-body">
+                        <div id="div-login-msg" style="color: white;">
+                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="text-login-msg">Type your username and password.</span>
+                        </div>
+                        <input id="login_username" class="form-control input-modal" type="text" placeholder="Username" required>
+                        <input id="login_password" class="form-control input-modal" type="password" placeholder="Password" required>
+                        <button type="submit" class="btn btn-default btn-lg btn-block" style="margin-top: 5px;" >Login</button>
+                        <button type="button" id="linkedin-signin" class="btn btn-linkedin" style="margin-top: 5px;" >
+                        </button>
+                        <div style="padding-top: 10px;">
+                            <button id="login_lost_btn" type="button" class="btn btn-default">Lost Password?</button>
+                            <button id="login_register_btn" type="button" class="btn btn-default">Register</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-lost-msg" style="color: white;">
+                            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="text-lost-msg">Type your e-mail.</span>
+                        </div>
+                        <input id="lost_email" class="form-control input-modal" type="text" placeholder="email" required>
+                        <div>
+                            <button type="submit" class="btn btn-default btn-lg btn-block">Send</button>
+                        </div>
+                        <div style="padding-top: 10px;">
+                            <button id="lost_login_btn" type="button" class="btn btn-default">Log In</button>
+                            <button id="lost_register_btn" type="button" class="btn btn-default">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Lost Password Form -->
+                
+                <!-- Begin | Register Form -->
+                <form id="register-form" method="POST" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-register-msg" style="color: white;">
+                            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="text-register-msg">Register an account.</span>
+                        </div>
+                        <input id="register_firstname" name="register_firstname" class="form-control input-modal" type="text" placeholder="First Name" required>
+                        <input id="register_middlename" name="register_middlename" class="form-control input-modal" type="text" placeholder="Middle Name [Optional]">
+                        <input id="register_lastname" name="register_lastname" class="form-control input-modal" type="text" placeholder="Last Name" required>
+                        <input id="register_username" name="register_username" class="form-control input-modal" type="text" placeholder="Username" required>
+                        <input id="register_email" name="register_email" class="form-control input-modal" type="email" placeholder="E-Mail" required>
+                        <input id="register_password" name="register_password" class="form-control input-modal" type="password" placeholder="Password" required>
+                        <input id="register_confirm_password" class="form-control input-modal" type="password" placeholder="Confirm Password" required>
+                        <input id="register_phone" name="register_phone" class="form-control input-modal" type="tel" placeholder="Phone Number">
+                        <select class="form-control input-modal" id="register_gender" name="register_gender" required>
+                            <option value="-1">Select a Gender</option>
+                            <?php foreach ($genders as $value) {
+                            ?>
+                                <option value="<?=$value->gender_id?>"><?=$value->gender?></option>
+                            <?php 
+                            }
+                            ?>
+                        </select>
+                        <select class="form-control input-modal" id="register_profile" name="register_profile" required>
+                            <option value="-1">Select a Profile</option>
+                            <?php foreach ($profiles as $value) {
+                            ?>
+                                <option value="<?=$value->profile_id?>"><?=$value->profile_desc?></option>
+                            <?php 
+                            }
+                            ?>
+                        </select>
+                        <div>
+                            <button id="register_btn" type="submit" class="btn btn-default btn-lg btn-block">Register</button>
+                        </div>
+                        <div style="padding-top: 10px;">
+                            <button id="register_login_btn" type="button" class="btn btn-default">Log In</button>
+                            <button id="register_lost_btn" type="button" class="btn btn-default">Lost Password?</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
             </div>
         </div>
-        <!-- /.map -->
-        <!-- /.featured alumni -->
-        <div class="row" style="padding-bottom: 1px;">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-lg-2 col-md-3 col-sm-6 featured-alumni-panel purple-on-white  text-center" style="line-height:180px;">
-                   <span class="centered-vertically"><h2 class="oswald upper">Featured Alumni</h2></span>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 featured-alumni-panel">
-                    Alumni 1
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 featured-alumni-panel">
-                    Alumni 2
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 featured-alumni-panel">
-                    Alumni 3
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 featured-alumni-panel">
-                    Alumni 4
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 eatured-alumni-panel">
-                    Alumni 5
-                </div>
-            </div>
-        </div>
-        <!-- /.featured alumni -->
-        <script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>
+        <footer class="index-footer">
+            <h4>Powered by: <img src="<?= $this->config->base_url(); ?>assets/webroot/img/dscontact_logo.png" /></h4>
+        </footer>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+    <script src="<?= $this->config->base_url(); ?>assets/js/login.js"></script>
+</body>
+</html>

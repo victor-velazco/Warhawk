@@ -7,7 +7,7 @@
 	}
 	$this->load->view('dashboard/front_end/header');
 	if (isset($side))
-		$this->load->view($side);
+	$this->load->view($side);
 	$this->load->view('template/front_end/js_scripts');
 	$this->load->view($body);
 	

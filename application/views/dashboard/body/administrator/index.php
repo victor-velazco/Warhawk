@@ -2,16 +2,16 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	if (isset($list) && !empty($list)) {
 ?>
-		<div class="col-md-9 container" style="top:102px; padding-left:2px; padding-right:2px;">
+		<div class="col-md-9 container oswald" style="top:102px; padding-left:2px; padding-right:2px;">
 	        <h3 align="center">Outstanding Alumni to be authorized</h3>
-			<table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+			<table class="datatable table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Grad Year</th>
-						<th>Origin Country/City</th>
-						<th>Current Country/City</th>
+						<th class="thead-centered">Id</th>
+						<th class="thead-centered">Name</th>
+						<th class="thead-centered">Grad Year</th>
+						<th class="thead-centered">Origin Country/City</th>
+						<th class="thead-centered">Current Country/City</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,11 +32,11 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Grad Year</th>
-						<th>Origin Country/City</th>
-						<th>Current Country/City</th>
+						<th class="thead-centered">Id</th>
+						<th class="thead-centered">Name</th>
+						<th class="thead-centered">Grad Year</th>
+						<th class="thead-centered">Origin Country/City</th>
+						<th class="thead-centered">Current Country/City</th>
 					</tr>
 				</tfoot>
 			</table>
@@ -50,5 +50,7 @@
 <?php
 	}
 ?>
+	    <div class="space-blank"></div>
+	    <div class="space-blank"></div>
 	</div>
-	<script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>
+</div>

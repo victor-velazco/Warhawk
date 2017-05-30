@@ -2,7 +2,7 @@
 
 class UploadModel extends CI_Model {
 
-    private function generatePassword() {
+    public function generatePassword() {
         $alpha = "abcdefghijklmnopqrstuvwxyz";
         $alpha_upper = strtoupper($alpha);
         $numeric = "0123456789";

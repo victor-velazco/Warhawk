@@ -26,6 +26,19 @@ class Welcome extends CI_Controller {
 		$data['genders'] = $this->GeneralModel->loadGenders();
 		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
 		$data['categories'] = $this->GeneralModel->loadCategories();
+		$this->load->view('index', $data);
+	}
+
+	public function dashboard(){
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Site';
+		$data['the_view'] = 'dashboard';
+		$data['genders'] = $this->GeneralModel->loadGenders();
+		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+		$data['featured'] = $this->GeneralModel->loadFeaturedAlumni();
+		$data['categories'] = $this->GeneralModel->loadCategories();
+		$data['feeds'] = $this->GeneralModel->loadLastFeeds();
+		$data['headline'] = $this->GeneralModel->loadLastHeadLine();
 		$this->load->view('template/template', $data);
 	}
         
@@ -35,9 +48,118 @@ class Welcome extends CI_Controller {
 		$data['the_view'] = 'about';
 		$data['genders'] = $this->GeneralModel->loadGenders();
 		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
-                $data['about'] = $this->GeneralModel->getAboutData($id);
+        $data['about'] = $this->GeneralModel->getAboutData($id);
+        $data['featured'] = $this->GeneralModel->loadFeaturedAlumni();
+        $data['feeds'] = $this->GeneralModel->loadLastFeeds();
 		$this->load->view('template/template', $data);
 	}        
+
+	public function announcements($id = NULL){
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Announcements';
+		$data['the_view'] = 'announcements';
+		$data['headlines'] = $this->GeneralModel->loadHeadLines();
+		$this->load->view('template/template', $data);
+	}        
+
+	public function messaging(){
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Announcements';
+		$data['the_view'] = 'messaging';
+		$this->load->view('template/template', $data);
+	} 
+
+	public function aboutAdmin($id = NULL){
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Site';
+		$data['the_view'] = 'about';
+		$data['genders'] = $this->GeneralModel->loadGenders();
+		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+        $data['about'] = $this->GeneralModel->getAboutDataAdmin($id);
+        $data['featured'] = $this->GeneralModel->loadFeaturedAlumni();
+        $data['feeds'] = $this->GeneralModel->loadLastFeeds();
+		$this->load->view('template/template', $data);
+	}        
+
+	public function profile($id = NULL) {
+		if (is_null($id)) {
+			$this->profileAdmin(1);
+		} else {
+			$this->load->model('GeneralModel');
+			$data['title'] = 'Warhawk Global Connect Site - Profile Update';
+			$data['the_view'] = 'profile';
+			$data['genders'] = $this->GeneralModel->loadGenders();
+			$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+	        $data['about'] = $this->GeneralModel->getAboutData($id);
+			$this->load->view('template/template', $data);
+		}
+	}
+
+	public function profileAdmin($id = NULL) {
+		$this->load->model('GeneralModel');
+		$data['title'] = 'Warhawk Global Connect Site - Profile Update';
+		$data['the_view'] = 'profile';
+		$data['genders'] = $this->GeneralModel->loadGenders();
+		$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
+        $data['about'] = $this->GeneralModel->getAboutDataAdmin($id);
+		$this->load->view('template/template', $data);
+	}
+
+	public function profileUpdate() {
+		$this->load->model('GeneralModel');
+        $about = $this->GeneralModel->getAboutData($_POST['id']);
+		if (is_null($about) && $_POST['id']===1) {
+        	$about = $this->GeneralModel->getAboutDataAdmin($_POST['id']);
+    	}
+        
+		if (strcmp($about->first_name,$_POST['firstname'])!=0) {
+			// Insert into feeds and update the value.
+			$this->GeneralModel->updatePerson($about->person_id, 'first_name', $_POST['firstname']);
+			$this->GeneralModel->addFeeds($_POST['id'], $about->first_name . ' ' . $about->last_name . ' has changed the First Name.');
+		}
+		if (strcmp($about->last_name,$_POST['lastname'])!=0) {
+			// Insert into feeds and update the value.
+			$this->GeneralModel->updatePerson($about->person_id, 'last_name', $_POST['lastname']);
+			$this->GeneralModel->addFeeds($_POST['id'], $about->first_name . ' ' . $about->last_name . ' has changed the Last Name.');
+		}
+		if (strcmp($about->email,$_POST['email'])!=0) {
+			// Insert into feeds and update the value.
+			$this->GeneralModel->updatePerson($about->person_id, 'email', $_POST['email']);
+			$this->GeneralModel->addFeeds($_POST['id'], $about->first_name . ' ' . $about->last_name . ' has changed the Email address.');
+		}
+		if (strcmp($about->phone_number,$_POST['phone'])!=0) {
+			// Insert into feeds and update the value.
+			$this->GeneralModel->updatePerson($about->person_id, 'phone_number', $_POST['phone']);
+			$this->GeneralModel->addFeeds($_POST['id'], $about->first_name . ' ' . $about->last_name . ' has changed the Phone Number.');
+		}
+		if (strcmp($about->about,$_POST['about'])!=0) {
+			// Insert into feeds and update the value.
+			$this->GeneralModel->updatePerson($about->person_id, 'about', $_POST['about']);
+			$this->GeneralModel->addFeeds($_POST['id'], $about->first_name . ' ' . $about->last_name . ' has changed the About information.');
+		}
+		echo json_encode(array('result' => true));
+	}
+
+	public function donate() {
+		if (isset($_REQUEST['id']) && !is_null($_REQUEST['id']) && ($_REQUEST['id']!="")) {
+			$this->load->model('GeneralModel');
+	        $about = $this->GeneralModel->getAboutData($_REQUEST['id']);
+	        
+			$this->GeneralModel->addFeeds($_REQUEST['id'], $about->first_name . ' ' . $about->last_name . ' has donated!!!.');
+		}
+		$this->dashboard();
+	}
+
+	public function refer() {
+		$this->load->model('GeneralModel');
+		if (!isset($_POST['email'])) {
+			$data['title'] = 'Warhawk Global Connect Site - Program referal';
+			$data['the_view'] = 'refer';
+			$this->load->view('template/template', $data);
+		} else {
+			return json_encode($this->GeneralModel->refer($_POST['email'], $this->session->userdata('data')['first_name'] . ' ' . $this->session->userdata('data')['last_name']));
+		}
+	}
 
 	public function verPass(){
 		$userid = $_POST['userid'];
@@ -56,6 +178,13 @@ class Welcome extends CI_Controller {
                 echo json_encode(array('verified' => false));
             }
         }
+	}
+	
+	public function lostPass(){
+		$email = $_POST['email'];
+		$this->load->model('GeneralModel');
+		$pass_sent = $this->GeneralModel->lostPass($email);
+		echo json_encode(array('sent' => $pass_sent));
 	}
 	
 	private function _cryptPass($password){
@@ -83,6 +212,21 @@ class Welcome extends CI_Controller {
 		$this->session->sess_destroy();
 		$this->load->helper('url');
 		redirect('welcome', 'refresh');
+	}
+
+	public function validate_user() {
+		$email = $_POST['email'];
+		$username = $_POST['username'];
+		$this->load->model('PersonModel');
+		$email_res = $this->PersonModel->validateEmail($email);
+		$username_res = $this->PersonModel->validateUsername($username);
+		if ($username_res) {
+			echo json_encode(array('res'=>'error','message'=>'Username already exists in our system.'));
+		} else if ($email_res) {
+			echo json_encode(array('res'=>'error','message'=>'Email already registered in our system.'));
+		} else {
+			echo json_encode(array('res'=>'Ok','message'=>''));
+		}
 	}
 
 	public function register_user() {
@@ -122,7 +266,7 @@ class Welcome extends CI_Controller {
 		$data['companies'] = $this->GeneralModel->loadCompanies();
 		$data['statuses'] = $this->GeneralModel->loadStatuses();
 		//$data['profiles'] = $this->GeneralModel->loadProfilesNoAdmin();
-		$this->load->view('template/template', $data);
+		$this->load->view('template/template_nohead', $data);
 		
 	}
 	

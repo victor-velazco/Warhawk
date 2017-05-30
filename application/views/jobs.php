@@ -99,8 +99,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>    
        
         </div>                                  
-        <?php       
-            include_once('template/login.php');
-        ?>
-        <!-- /.featured alumni -->
-        <script src="<?php echo $this->config->base_url(); ?>assets/js/login.js"></script>            
+        <?php
+        $this->load->view('template/login.php');
+        ?>        

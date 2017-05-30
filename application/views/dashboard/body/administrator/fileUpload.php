@@ -62,5 +62,4 @@
                 </div>
             </form>
 
-        <script src="<?php echo $this->config->base_url(); ?>assets/js/file_upload.js">
-        </script>
+        

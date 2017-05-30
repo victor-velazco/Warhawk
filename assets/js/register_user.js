@@ -157,6 +157,7 @@ $(function() {
             event.preventDefault();
             return;
         }
+        event.preventDefault();
         $.post($("#confirm-form").attr("action"),
             {
                 "university": $("#university").val(),
@@ -173,6 +174,7 @@ $(function() {
             function(data, status){
                 alert("Your profile has been created successfully, please wait for it to be authorized.");
                 window.location.href = "/wgc/";
+                return true;
             });
     });
 });

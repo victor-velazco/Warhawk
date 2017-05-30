@@ -38,6 +38,25 @@ class Administrator extends CI_Controller {
 		$this->load->view('dashboard/template',$data);
 	}   
                          
+	public function announcements() {
+		$data['title'] = ucwords("Dashboard");
+		$this->load->model('AdministratorModel');
+		$data['profile'] = $this->profile;
+		$data['list'] = $this->AdministratorModel->getAuthorizedAlumniList();
+		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/announcements";
+		$this->load->view('dashboard/template',$data);
+	}   
+        
+    public function registerAnnouncement() {
+		$data['title'] = ucwords("Dashboard");
+		$this->load->model('AdministratorModel');
+
+		$hedlineData = array('header'=>$_POST['header'],'short_desc'=>$_POST['short_desc'],'description'=>$_POST['description'],'valid_from'=>$_POST['start_dt'],'valid_to'=>$_POST['end_dt'],'order'=>date('Y-m-d H:i:s'),'publisher_id'=>1);
+		$this->AdministratorModel->insertHeadline($hedlineData);
+
+		$this->dashboard();
+	}
+
 
 	public function createUser() {
 		if (isset($_POST['register_firstname'])) {
@@ -84,6 +103,25 @@ class Administrator extends CI_Controller {
 		$data['side'] = "dashboard/side/".str_replace(" ", "", $this->profile);
 		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/index";
 		$this->load->view('dashboard/template',$data);
+	}
+
+	public function reset_password() {
+		$data['title'] = ucwords("Reset Password");
+		$this->load->model('AdministratorModel');
+		$data['profile'] = $this->profile;
+		$data['list'] = $this->AdministratorModel->getAuthorizedAlumniList();
+		$data['side'] = "dashboard/side/".str_replace(" ", "", $this->profile);
+		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/reset_password";
+		$this->load->view('dashboard/template',$data);
+	}
+
+	public function send_password() {
+		$this->load->model('AdministratorModel');
+		if ($this->AdministratorModel->lostPass($_POST['person_id'])) {
+			echo json_encode(array('result' => 'true'));
+		} else {
+			echo json_encode(array('result' => 'false'));
+		}
 	}
 
 	public function show_outstanding_alumni_data($id = NULL) {
