@@ -19,6 +19,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?= $this->config->base_url(); ?>assets/webroot/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <link rel="shortcut icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
+		<style >
+			#capatcha {
+				margin: 0 auto;
+				width: 304px;
+			}			
+		</style>
+
     </head>
     <body class="background_wgc">
     <!--[if lt IE 8]>
@@ -43,16 +50,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <input id="login_username" class="form-control input-modal" type="text" placeholder="Username" required>
                         <input id="login_password" class="form-control input-modal" type="password" placeholder="Password" required>
-                        <button type="submit" class="btn btn-default btn-lg btn-block" style="margin-top: 5px;" >Login</button>
+                        <br>
+						<div id="capatcha">
+						<div class="g-recaptcha" data-sitekey="6LewXyMUAAAAACoIk7wqjlws8J3hwbeG9QwNmIHJ"></div>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-default btn-lg btn-block" style="margin-top: 5px;" >Login</button>
                         <button type="button" id="linkedin-signin" class="btn btn-linkedin" style="margin-top: 5px;" >
                         </button>
                         <div style="padding-top: 10px;">
                             <button id="login_lost_btn" type="button" class="btn btn-default">Lost Password?</button>
                             <button id="login_register_btn" type="button" class="btn btn-default">Register</button>
                         </div>
-                    </div>
+                    </div>					
                 </form>
-
+			
+				
                 <!-- Begin | Lost Password Form -->
                 <form id="lost-form" style="display:none;">
                     <div class="modal-body">
@@ -123,5 +136,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
     <script src="<?= $this->config->base_url(); ?>assets/js/login.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

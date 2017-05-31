@@ -13,11 +13,13 @@ $(function() {
             case "login-form":
                 var $lg_username=$('#login_username').val();
                 var $lg_password=$('#login_password').val();
+				var $g_recaptcha_response = grecaptcha.getResponse();
 
-                $.post("/wgc/index.php/Welcome/verPass",
+                $.post("/wgc/index.php/Welcome/verLogin",
                 {
                     "userid": $lg_username,
-                    "password": $lg_password
+                    "password": $lg_password,
+					"g_recaptcha_response": $g_recaptcha_response
                 },
                 function(data, status){
                     //console.log(JSON.stringify(data));
@@ -26,7 +28,7 @@ $(function() {
                         // User and Password correct.
                         location.href='/wgc/index.php/Welcome/dashboard';
                     } else{
-                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Please verify your user or password.");
+                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Please verify your user, password or reCAPTCHA.");
                     }
                 });
                 /*

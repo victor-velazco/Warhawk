@@ -160,12 +160,47 @@ class Welcome extends CI_Controller {
 			return json_encode($this->GeneralModel->refer($_POST['email'], $this->session->userdata('data')['first_name'] . ' ' . $this->session->userdata('data')['last_name']));
 		}
 	}
+	
+	public function verLogin(){
+		
+		$g_recaptcha_response = $_POST['g_recaptcha_response'];		
+		// your secret key
+		$secret = "6LewXyMUAAAAAD8M4MWaA1KUAp7-AelaJAmEVvD4";
+		
+		$captcha = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$g_recaptcha_response.'&remoteip='.$_SERVER['REMOTE_ADDR']),TRUE); 
+		
+		$userid = $_POST['userid'];
+		$password = $_POST['password'];
+							
+		$this->load->model('GeneralModel');
+		$User = $this->GeneralModel->verifyPass($userid);				
+
+		//print_r($captcha);
+		
+		if($User == False){
+            echo json_encode(array('verified' => false));
+        } else {
+			if($captcha['success'] == 1){ 			
+				if($this->_compPass($password, $User->password)){
+					$user_data['login'] = true;
+					$user_data['data'] = $this->GeneralModel->getPersonsData($userid);
+					echo json_encode(array('verified' => true));
+					$this->session->set_userdata($user_data);
+				}else{
+					echo json_encode(array('verified' => false));
+				}
+			} else {
+				echo json_encode(array('verified' => false));
+			}	
+        }
+	}		
 
 	public function verPass(){
 		$userid = $_POST['userid'];
 		$password = $_POST['password'];
 		$this->load->model('GeneralModel');
-		$User = $this->GeneralModel->verifyPass($userid);
+		$User = $this->GeneralModel->verifyPass($userid);				
+		
 		if($User == False){
             echo json_encode(array('verified' => false));
         } else {
