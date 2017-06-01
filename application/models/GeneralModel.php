@@ -35,13 +35,21 @@ class GeneralModel extends CI_Model {
         else return false;
     }
     
-    function refer($email, $name){
-        $to      = $email;
+    function refer($email, $first_name, $last_name){
+        $to      = $email . ", " . "amiri.sarah@yahoo.fr";
         $subject = 'WGC Referal Program';
-        $message = '<h1>WGC Support</h1>Your friend: ' . $name . " has invited you to sign up to <a href='http://www.quimeratech.com/wgc'>Warhawk Global Connection page</a><br/>Give it a try !!!" . "\r\n";
-        $headers = 'From: <WGC Support>support@wgc.com' . "\r\n" .
-            'Reply-To: support@wgc.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+
+		$message =  "Hello (".$first_name.") \r\n<br><br>";
+		$message .= "Your classmate (".$first_name.", ".$last_name.") thinks you should join the Warhawk Global Connect Network and connect with your international friends from UW-Whitewater. \r\n<br><br>";
+		$message .= "To join please following the link below:\r\n<br><br> ";
+		$message .= "(<a href='http://www.quimeratech.com/wgc'>Warhawk Global Connection page</a>)" . "\r\n<br><br>";
+		$message .= "WCG Team\r\n<br><br>";
+		$message .= "UW-Whitewater\r\n<br><br>";
+		
+		
+        $headers =	'From: <WGC Support>support@wgc.com' . "\r\n" .
+					'Reply-To: support@wgc.com' . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
         $headers  .= 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         return mail($to, $subject, $message, $headers);

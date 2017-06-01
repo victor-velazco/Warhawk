@@ -157,7 +157,7 @@ class Welcome extends CI_Controller {
 			$data['the_view'] = 'refer';
 			$this->load->view('template/template', $data);
 		} else {
-			return json_encode($this->GeneralModel->refer($_POST['email'], $this->session->userdata('data')['first_name'] . ' ' . $this->session->userdata('data')['last_name']));
+			return json_encode($this->GeneralModel->refer($_POST['email'], $this->session->userdata('data')['first_name'] ,  $this->session->userdata('data')['last_name']));
 		}
 	}
 	
