@@ -100,6 +100,7 @@ class Auth extends CI_Controller {
 		$personData = array('linkedin_id'=>$linkedin_id, 'first_name' => $first_name, 'last_name' => $last_name, 'middle_name' => $middle_name, 'username' => $username, 'email' => $email, 'password' => $password, 'phone_number' => $phone_number, 'gender_id' => $gender_id, 'profile_id' => $profile_id );
 		$this->load->model('PersonModel');
 		$person_id = $this->PersonModel->insertPerson($personData);
+		
 		$personData['person_id']=$person_id;
 		$user_data['login'] = true;
 		$personData['profile_desc'] = "alumni";

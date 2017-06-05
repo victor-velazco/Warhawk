@@ -38,6 +38,7 @@ class Alumni extends CI_Controller {
 		$data['featured'] = $this->GeneralModel->loadFeaturedAlumni();
 		$data['categories'] = $this->GeneralModel->loadCategories();
 		$data['feeds'] = $this->GeneralModel->loadLastFeeds();
+		$data['headline'] = $this->GeneralModel->loadLastHeadLine();
 		$this->load->view('template/template', $data);
 	}
         

@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
     <br><br><br><br>
     <div class="container-fluid">
-    <form id="update-form" method="POST" ACTION="userProfile">
+		
+		<form id="update-form" method="post" action="<?= base_url() ?>/userProfile">
         <?php
         if (isset($about->alumni_id)) {
         ?>

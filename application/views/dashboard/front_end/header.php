@@ -54,7 +54,7 @@
             <li><a href="<?= base_url() ?>index.php/<?= strtolower($this->session->userdata('data')['profile_desc']) ?>/announcements"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i></a></li>
             <li>
             <?php
-                if ($this->session->userdata('login')) {
+                if ($this->session->userdata('login') == 1) {
                     $users = base_url() . "index.php/Welcome/profileAdmin/" .$this->session->userdata('data')['person_id'];
                 }else{
                     $users = "#";

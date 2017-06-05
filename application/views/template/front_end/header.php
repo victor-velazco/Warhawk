@@ -30,6 +30,7 @@
         
     <!-- Fixed navbar -->
     
+	
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
             <a class="navbar-brand" href="<?= $this->config->base_url(); ?>index.php/welcome/dashboard"><img src="<?= $this->config->base_url(); ?>assets/img/logo.png"></a>
@@ -41,6 +42,7 @@
           </button>
             
         </div>
+		
         <div id="navbar" class="navbar-collapse collapse">
             <br>
         <?php 
@@ -54,7 +56,7 @@
             <li><a href="<?= base_url() ?>index.php/welcome/announcements"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i></a></li>
             <li>
             <?php
-                if ($this->session->userdata('login')) {
+                if ($this->session->userdata('login') == 1) {
                     $users = base_url() . "index.php/Welcome/profile/" .$this->session->userdata('data')['alumni_id'];
                 }else{
                     $users = "#";

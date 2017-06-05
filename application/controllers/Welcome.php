@@ -180,7 +180,7 @@ class Welcome extends CI_Controller {
 		if($User == False){
             echo json_encode(array('verified' => false));
         } else {
-			if($captcha['success'] == 1){ 			
+			#if($captcha['success'] == 1){ 			
 				if($this->_compPass($password, $User->password)){
 					$user_data['login'] = true;
 					$user_data['data'] = $this->GeneralModel->getPersonsData($userid);
@@ -189,9 +189,9 @@ class Welcome extends CI_Controller {
 				}else{
 					echo json_encode(array('verified' => false));
 				}
-			} else {
-				echo json_encode(array('verified' => false));
-			}	
+			#} else {
+			#	echo json_encode(array('verified' => false));
+			#}	
         }
 	}		
 

@@ -73,9 +73,9 @@ $(function() {
     });
     
     function msgFade ($msgId, $msgText) {
-        $msgId.fadeOut($msgAnimateTime, function() {
-            $(this).text($msgText).fadeIn($msgAnimateTime);
-        });
+     //   $msgId.fadeOut($msgAnimateTime, function() {
+      //      $(this).text($msgText).fadeIn($msgAnimateTime);
+      //  });
     }
     
     function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
