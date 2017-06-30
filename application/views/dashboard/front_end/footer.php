@@ -5,7 +5,7 @@
                         &copy; 2016 University of Wisconsin-Whitewater
                     </div>
                     <div class="col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 text-center">
-                        Developed by DS Contact Alumni Network
+                        Developed by Alpha Programmers, LLC
                     </div>
                     <div class="col-lg-offset-1 col-lg-3 col-md-3 col-sm-3 text-right">
                         Account Settings&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Privacy Policy&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Help

@@ -21,15 +21,34 @@
         <div class="carousel-inner">
             <div>
                 <div class="carousel-caption">
-                    <div class="trans"></div>                    
-                    <h2 class="oswald upper">
-                    <?= is_null($headline)?"No announcements":$headline->header ?>                   
+                    <div class="trans"></div> 
+					<?php
+					foreach ($headline->result() as $row) { 
+					?>
+                    <h2 class="oswald upper">  
+						<?php
+						
+						if (empty($headline)) {
+							echo "No announcements";
+						}else{
+							echo $row->header;
+						}						
+						?>
                     </h2>                    
-                    <p class="text-justify raleway">
-                        <?= is_null($headline)?"---":$headline->short_desc ?>   
+                    <p class="text-justify raleway" >
+						<?php
+						if (empty($headline)) {
+							echo "---";
+						}else{
+							echo substr($row->short_desc,0, 35) . ' ...';
+						}						
+						?>						
                     </p>
+					<?php
+					}
+					?>
                     <span style="text-align:right;position: absolute;bottom: 0px;width: 49%;">
-                    <a href="<?= base_url() ?>index.php/welcome/announcements">read more >></a></span>
+						<a href="<?= base_url() ?>index.php/welcome/announcements" style="color:white;">read more <span class="glyphicon glyphicon-chevron-right"></span></a></span>
                 </div> 
             </div> 
             <div class="item active">

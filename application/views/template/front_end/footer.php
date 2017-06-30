@@ -5,7 +5,7 @@
                         &copy; 2016 University of Wisconsin-Whitewater
                     </div>
                     <div class="col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 text-center">
-                        Developed by DS Contact Alumni Network
+                        Developed by Alpha Programmers, LLC
                     </div>
                     <div class="col-lg-offset-1 col-lg-3 col-md-3 col-sm-3 text-right">
                         Account Settings&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Privacy Policy&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Help
@@ -137,7 +137,7 @@
                 });
             
                 
-                $( '#addEvent' ).click(function() { 
+                $( '#addEvent' ).click(function(event) { 
                     event.preventDefault();                                                            
                     var fecha = $("input#event_date").val();
                     var evento = $("input#detail_event").val(); 
@@ -157,8 +157,9 @@
                         
                 });                    
                 
-                $( '#profile_btn' ).click(function() { 
+                $( '#profile_btn' ).click(function(event) { 
                     event.preventDefault();
+					var url = $("#type").val();
                     $.ajax({
                         url:        '<?= base_url(); ?>index.php/welcome/profileUpdate',
                         type:       'POST',
@@ -172,13 +173,17 @@
                           about:$("#profile_about").val(),
                         },
                         success:    function(result){
-                          console.log(result);                             
-                          window.location.href="<?= base_url(); ?>index.php/welcome/dashboard";
+                          console.log(result);        
+							if(url == 'alumni'){
+								window.location.href="<?= base_url(); ?>index.php/alumni/dashboard";  
+							}else{
+								window.location.href="<?= base_url(); ?>index.php/welcome/dashboard";
+							}
                         }
                     }); 
                 }); 
 
-                $( '#donate_btn' ).click(function() { 
+                $( '#donate_btn' ).click(function(event) { 
                     event.preventDefault();
                     $.ajax({
                         url:        '<?= base_url(); ?>index.php/welcome/donate',
@@ -194,7 +199,7 @@
                     }); 
                 });  
 
-                $( '#referal_btn' ).click(function() { 
+                $( '#referal_btn' ).click(function(event) { 
                     event.preventDefault();
                     $.ajax({
                         url:        '<?= base_url(); ?>index.php/welcome/refer',

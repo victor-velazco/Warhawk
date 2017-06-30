@@ -3,7 +3,7 @@
 ?>
 		<div class="col-md-offset-3 col-md-6 container" style="top:102px; padding-left:2px; padding-right:2px;">
 	        <!-- Begin | Announcements Form -->
-	        <form id="announcement-form" name="announcement-form" method="POST" ACTION="<?= base_url() ?>index.php/<?= strtolower($this->session->userdata('data')['profile_desc']) ?>/registerAnnouncement">
+	        <form id="announcement-form" name="announcement-form" method="POST" ACTION="<?= base_url() ?>index.php/administrator/registerAnnouncement">
 			    <div class="modal-body">
 					<div id="div-announcement-msg">
 	                    <h3><div id="icon-announcement-msg" class="glyphicon glyphicon-chevron-right"></div>

@@ -200,21 +200,21 @@ class GeneralModel extends CI_Model {
 
     function loadLastHeadLine(){
         $this->db->from('headlines');
-        $this->db->where('valid_from <=', date('Y-m-d H:i:s')); 
-        $this->db->where('valid_to >=', date('Y-m-d H:i:s')); 
+        $this->db->where('valid_from <=', date('Y-m-d')); 
+        $this->db->where('valid_to >=', date('Y-m-d')); 
         $this->db->order_by('order', 'DESC');
-        $this->db->limit(1);       
+        $this->db->limit(3);       
         $query = $this->db->get();        
-        return ( $query->num_rows() >= 1 ) ? $query->row() : null;
+        return ($query);
     }
 
     function loadHeadLines(){
         $this->db->from('headlines');
-        $this->db->where('valid_from <=', date('Y-m-d H:i:s')); 
-        $this->db->where('valid_to >=', date('Y-m-d H:i:s')); 
+        $this->db->where('valid_from <=', date('Y-m-d')); 
+        $this->db->where('valid_to >=', date('Y-m-d')); 
         $this->db->order_by('order', 'DESC');
-        $query = $this->db->get();        
-        return ( $query->num_rows() >= 1 ) ? $query->result() : null;
+        $query = $this->db->get();        		
+        return ($query);
     }
 
     function insertCountry($country_name) {

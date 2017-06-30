@@ -131,8 +131,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- End | Register Form -->
             </div>
         </div>
-        <footer class="index-footer">
-            <h4>Powered by: <img src="<?= $this->config->base_url(); ?>assets/webroot/img/dscontact_logo.png" /></h4>
+        <footer class="index-footer" style="padding: 5px;">
+            <h4>Powered by Alpha Programmers, LLC</h4>
         </footer>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>

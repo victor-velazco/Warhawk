@@ -48,10 +48,13 @@ class Administrator extends CI_Controller {
 	}   
         
     public function registerAnnouncement() {
+		
+		$user_id = $this->session->userdata('data')['person_id'];
+		
 		$data['title'] = ucwords("Dashboard");
 		$this->load->model('AdministratorModel');
 
-		$hedlineData = array('header'=>$_POST['header'],'short_desc'=>$_POST['short_desc'],'description'=>$_POST['description'],'valid_from'=>$_POST['start_dt'],'valid_to'=>$_POST['end_dt'],'order'=>date('Y-m-d H:i:s'),'publisher_id'=>1);
+		$hedlineData = array('header'=>$_POST['header'],'short_desc'=>$_POST['short_desc'],'description'=>$_POST['description'],'valid_from'=>$_POST['start_dt'],'valid_to'=>$_POST['end_dt'],'order'=>date('Y-m-d H:i:s'),'publisher_id'=>$user_id);
 		$this->AdministratorModel->insertHeadline($hedlineData);
 
 		$this->dashboard();
