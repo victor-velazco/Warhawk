@@ -318,5 +318,6 @@ class Alumni extends CI_Controller {
 			echo json_encode($cities);
 		} 
 	}
+	
 
 }

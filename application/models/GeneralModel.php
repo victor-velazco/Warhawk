@@ -210,6 +210,7 @@ class GeneralModel extends CI_Model {
 
     function loadHeadLines(){
         $this->db->from('headlines');
+		$this->db->join('persons', 'persons.person_id = headlines.publisher_id');
         $this->db->where('valid_from <=', date('Y-m-d')); 
         $this->db->where('valid_to >=', date('Y-m-d')); 
         $this->db->order_by('order', 'DESC');

@@ -137,6 +137,24 @@
             return $this->db->insert_id();
         }
 
+		function delAnnouncement($id){
+			$this->db->where('headline_id', $id);
+			$this->db->delete('headlines');
+		}  		
+
+		public function getIdAnnouncement($id) {
+			$this->db->where('headline_id', $id);
+			$query = $this->db->get('headlines');
+			return $query->row();
+		}  
+		
+		public function editAnnouncement($id, $data){                
+			$this->db->where('headline_id', $id);
+			$this->db->update('headlines', $data);
+			return $error = $this->db->error();                          
+		}   		
+		
+		
  }
 
 

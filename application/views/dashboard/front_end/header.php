@@ -51,7 +51,7 @@
         ?>            
           <ul class="nav navbar-nav navbar-right">
             <li><a href="<?=$href?>"><i class="fa fa-tachometer fa-3x" aria-hidden="true"></i></a></li>
-            <li><a href="<?= base_url() ?>index.php/<?= strtolower($this->session->userdata('data')['profile_desc']) ?>/announcements"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i></a></li>
+            <li><a href="<?= base_url() ?>index.php/welcome/announcements"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i></a></li>
             <li>
             <?php
                 if ($this->session->userdata('login') == 1) {

@@ -57,9 +57,51 @@ class Administrator extends CI_Controller {
 		$hedlineData = array('header'=>$_POST['header'],'short_desc'=>$_POST['short_desc'],'description'=>$_POST['description'],'valid_from'=>$_POST['start_dt'],'valid_to'=>$_POST['end_dt'],'order'=>date('Y-m-d H:i:s'),'publisher_id'=>$user_id);
 		$this->AdministratorModel->insertHeadline($hedlineData);
 
-		$this->dashboard();
+		//$this->dashboard();
+		redirect(base_url(). 'index.php/welcome/announcements');
 	}
 
+    public function updateAnnouncement($id = NULL) {
+		$data['title'] = ucwords("Dashboard");
+		$this->load->model('AdministratorModel');
+		$data['profile'] = $this->profile;
+		$data['list'] = $this->AdministratorModel->getAuthorizedAlumniList();
+		$data['edicion'] = $this->AdministratorModel->getIdAnnouncement($id); 
+		$data['body'] = "dashboard/body/".str_replace(" ", "", $this->profile) . "/announcements_update";
+		$this->load->view('dashboard/template',$data);
+		
+		#POST
+        if ($this->input->method() == 'post'){
+			$data = array(
+				'headline_id'  =>  $this->input->post('headline_id'), 
+				'header'       =>  $this->input->post('header'),
+				'short_desc'        =>  $this->input->post('short_desc'), 
+				'description'       =>  $this->input->post('description'),
+				'valid_from'       =>  $this->input->post('valid_from'),
+				'valid_to'       =>  $this->input->post('valid_to')
+			);   			
+			
+			$error = $this->AdministratorModel->editAnnouncement($id,$data);
+			if ($error['code'] === 0){
+				$this->session->set_flashdata('msg', '<div class="card-panel green darken-3">Noticia editado correctamente!</div>');
+				redirect(base_url(). 'index.php/welcome/announcements');
+			}else{
+				$this->session->set_flashdata('msg', '<div class="card-panel red accent-4">Error al editar el NOticia!</div>');
+			}  			
+			
+						
+		}
+
+	}	
+	
+	
+    public function delAnnouncements($id = NULL) {
+        $this->AdministratorModel->delAnnouncement($id);
+        $this->session->set_flashdata('msg', '<div class="card-panel red darken-3">Imagen borrada correctamente!</div>');		
+
+		//$this->dashboard();
+		redirect(base_url(). 'index.php/welcome/announcements');
+	}	
 
 	public function createUser() {
 		if (isset($_POST['register_firstname'])) {

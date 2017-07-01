@@ -19,7 +19,11 @@
         <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>        
         <script src="<?= $this->config->base_url(); ?>assets/webroot/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <link rel="shortcut icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
+        
+	<!-- http://bootsnipp.com/snippets/4jXW -->
+	<link rel="stylesheet" href="<?= base_url(); ?>/assets/css/chat.css" />		
+		
+		<link rel="shortcut icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= $this->config->base_url(); ?>favicon.ico" type="image/x-icon">
     </head>
     <body>
