@@ -363,11 +363,14 @@ var append_chat_data = function (chat_data) {
 }
 
 var update_chats = function () {
+	var from = $('#from_person_id').val();
+	var to = 33;
+
 	if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
 		var offset = 60*15; // 15min
 		request_timestamp = parseInt( Date.now() / 1000 - offset );
 	}
-	$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp, function (data){
+	$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
 		append_chat_data(data);	
 
 		var newIndex = data.length-1;
@@ -375,6 +378,52 @@ var update_chats = function () {
 			request_timestamp = data[newIndex].timestamp;
 		}
 	});      
+}
+
+
+
+var update_chats_to = function () {
+	var from = $('#to_person_id').val();
+	var to = 33;
+
+	if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
+		var offset = 60*15; // 15min
+		request_timestamp = parseInt( Date.now() / 1000 - offset );
+	}
+	$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
+		append_chat_data_to(data);	
+
+		var newIndex = data.length-1;
+		if(typeof(data[newIndex]) != 'undefined'){
+			request_timestamp = data[newIndex].timestamp;
+		}
+	});      
+}
+
+
+var append_chat_data_to = function (chat_data) {
+	chat_data.forEach(function (data) {
+		var is_me = data.guid == getCookie('user_guid');
+		
+
+			var html = '<li class="left clearfix">';
+			html += '	<span class="chat-img pull-left">';
+			html += '		<img src="http://placehold.it/50/55C1E7/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
+			html += '	</span>';
+			html += '	<div class="chat-body clearfix">';
+			html += '		<div class="header">';
+			html += '			<strong class="primary-font">' + data.nickname + '</strong>';
+			html += '			<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
+			
+			html += '		</div>';
+			html += '		<p>' + data.message + '</p>';
+			html += '	</div>';
+			html += '</li>';
+	
+		$("#received_to").html( $("#received_to").html() + html);
+	});
+  
+	$('#received_to').animate({ scrollTop: $('#received_to').height()}, 1000);
 }
 
 

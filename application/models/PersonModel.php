@@ -26,7 +26,7 @@ class PersonModel extends CI_Model {
     
     function getPersonsData($userid){
 
-        $qryPerson = "  SELECT a.alumni_id, a.status_id, p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
+        $qryPerson = "  SELECT a.alumni_id, a.status_id, a.image ,p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
                         FROM persons p
                         JOIN profiles pr ON p.profile_id = pr.profile_id
                         JOIN genders g ON p.gender_id = g.gender_id
@@ -41,7 +41,7 @@ class PersonModel extends CI_Model {
 
     function getPersonsDataLinkedIn($id){
 
-        $qryPerson = "  SELECT a.alumni_id, a.status_id, p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
+        $qryPerson = "  SELECT a.alumni_id, a.status_id, a.image , p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc
             FROM persons p
             JOIN profiles pr ON p.profile_id = pr.profile_id
             JOIN genders g ON p.gender_id = g.gender_id

@@ -29,8 +29,10 @@ class Api extends CI_Controller {
 	public function get_messages()
 	{
 		$timestamp = $this->input->get('timestamp', null);
+		$from = $this->input->get('from', null);
+		$to = $this->input->get('to', null);		
 		
-		$messages = $this->Chat_model->get_messages($timestamp);
+		$messages = $this->Chat_model->get_messages($timestamp, $from, $to);
 		
 		$this->_setOutput($messages);
 	}
