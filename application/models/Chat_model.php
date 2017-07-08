@@ -28,5 +28,17 @@ class Chat_model extends CI_Model {
 		
 		return array_reverse($query->result_array());
 	}
+	
+	function get_messages_to($timestamp, $from, $to)
+	{
+		$this->db->where('timestamp >', $timestamp);
+		$this->db->where('from_person_id =', $to);
+		$this->db->where('to_person_id =', $from);	
+		$this->db->order_by('timestamp', 'DESC');
+		$this->db->limit(10); 
+		$query = $this->db->get('messages');
+		
+		return array_reverse($query->result_array());
+	}	
 
 }

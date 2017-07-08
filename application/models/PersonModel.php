@@ -39,6 +39,16 @@ class PersonModel extends CI_Model {
         return $person;
     }
 
+    function getAllPersonsData(){
+        $this->db->from('persons');
+        $this->db->join('alumni', 'alumni.person_id = persons.person_id'); 
+		$this->db->where('alumni.authorized =', 1);
+     
+        $query = $this->db->get();        
+        return $query;
+    }	
+	
+		
     function getPersonsDataLinkedIn($id){
 
         $qryPerson = "  SELECT a.alumni_id, a.status_id, a.image , p.person_id, p.first_name, p.middle_name, p.last_name, p.email, p.username, p.phone_number, p.gender_id, g.gender, pr.profile_id, pr.profile_desc

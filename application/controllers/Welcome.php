@@ -64,8 +64,10 @@ class Welcome extends CI_Controller {
 
 	public function messaging(){
 		$this->load->model('GeneralModel');
+		$this->load->model('PersonModel');
 		$data['title'] = 'Warhawk Global Connect Announcements';
 		$data['the_view'] = 'messaging';
+		$data['persons'] = $this->PersonModel->getAllPersonsData();
 		$this->load->view('template/template', $data);
 	} 
 

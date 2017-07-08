@@ -246,214 +246,239 @@
 			
 			
 			
-			
-$('#nickname').keyup(function() {
-	var nickname = $(this).val();
 
-	if(nickname == ''){
-		$('#msg_block').hide();
-	}else{
-		$('#msg_block').show();
-	}
-});
+				$('#nickname').keyup(function() {
+					var nickname = $(this).val();
 
-// initial nickname check
-$('#nickname').trigger('keyup');
-			
-			
-var request_timestamp = 0;
+					if(nickname == ''){
+						$('#msg_block').hide();
+					}else{
+						$('#msg_block').show();
+					}
+				});
 
-var setCookie = function(key, value) {
-	var expires = new Date();
-	expires.setTime(expires.getTime() + (5 * 60 * 1000));
-	document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
-}
-
-var getCookie = function(key) {
-	var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-	return keyValue ? keyValue[2] : null;
-}
-
-var guid = function() {
-	function s4() {
-		return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-	}
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-
-if(getCookie('user_guid') == null || typeof(getCookie('user_guid')) == 'undefined'){
-	var user_guid = guid();
-	setCookie('user_guid', user_guid);
-}
+				// initial nickname check
+				$('#nickname').trigger('keyup');
 
 
-// https://gist.github.com/kmaida/6045266
-var parseTimestamp = function(timestamp) {
-	var d = new Date( timestamp * 1000 ), // milliseconds
-		yyyy = d.getFullYear(),
-		mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
-		dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
-		hh = d.getHours(),
-		h = hh,
-		min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
-		ampm = 'AM',
-		timeString;
-			
-	if (hh > 12) {
-		h = hh - 12;
-		ampm = 'PM';
-	} else if (hh === 12) {
-		h = 12;
-		ampm = 'PM';
-	} else if (hh == 0) {
-		h = 12;
-	}
+				var request_timestamp = 0;
 
-	timeString = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
-		
-	return timeString;
-}
+				var setCookie = function(key, value) {
+					var expires = new Date();
+					expires.setTime(expires.getTime() + (5 * 60 * 1000));
+					document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+				}
+
+				var getCookie = function(key) {
+					var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+					return keyValue ? keyValue[2] : null;
+				}
+
+				var guid = function() {
+					function s4() {
+						return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+					}
+					return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+				}
+
+				if(getCookie('user_guid') == null || typeof(getCookie('user_guid')) == 'undefined'){
+					var user_guid = guid();
+					setCookie('user_guid', user_guid);
+				}
 
 
+				// https://gist.github.com/kmaida/6045266
+				var parseTimestamp = function(timestamp) {
+					var d = new Date( timestamp * 1000 ), // milliseconds
+						yyyy = d.getFullYear(),
+						mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
+						dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
+						hh = d.getHours(),
+						h = hh,
+						min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
+						ampm = 'AM',
+						timeString;
 
-var sendChat = function (message, from, to, callback) {
+					if (hh > 12) {
+						h = hh - 12;
+						ampm = 'PM';
+					} else if (hh === 12) {
+						h = 12;
+						ampm = 'PM';
+					} else if (hh == 0) {
+						h = 12;
+					}
 
-	$.getJSON('<?php echo base_url(); ?>index.php/api/send_message?message=' + message + '&from=' + from + '&to=' + to + '&nickname=' + $('#nickname').val() + '&guid=' + getCookie('user_guid'), function (data){
-		callback();
-	});
-}
+					timeString = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
 
-var append_chat_data = function (chat_data) {
-	chat_data.forEach(function (data) {
-		var is_me = data.guid == getCookie('user_guid');
-		
-		if(is_me){
-			var html = '<li class="right clearfix">';
-			html += '	<span class="chat-img pull-right">';
-			html += '		<img src="http://placehold.it/50/FA6F57/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
-			html += '	</span>';
-			html += '	<div class="chat-body clearfix">';
-			html += '		<div class="header">';
-			html += '			<small class="text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
-			html += '			<strong class="pull-right primary-font">' + data.nickname + '</strong>';
-			html += '		</div>';
-			html += '		<p>' + data.message + '</p>';
-			html += '	</div>';
-			html += '</li>';
-		}else{
-		  
-			var html = '<li class="left clearfix">';
-			html += '	<span class="chat-img pull-left">';
-			html += '		<img src="http://placehold.it/50/55C1E7/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
-			html += '	</span>';
-			html += '	<div class="chat-body clearfix">';
-			html += '		<div class="header">';
-			html += '			<strong class="primary-font">' + data.nickname + '</strong>';
-			html += '			<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
-			
-			html += '		</div>';
-			html += '		<p>' + data.message + '</p>';
-			html += '	</div>';
-			html += '</li>';
-		}
-		$("#received").html( $("#received").html() + html);
-	});
-  
-	$('#received').animate({ scrollTop: $('#received').height()}, 1000);
-}
-
-var update_chats = function () {
-	var from = $('#from_person_id').val();
-	var to = 33;
-
-	if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
-		var offset = 60*15; // 15min
-		request_timestamp = parseInt( Date.now() / 1000 - offset );
-	}
-	$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
-		append_chat_data(data);	
-
-		var newIndex = data.length-1;
-		if(typeof(data[newIndex]) != 'undefined'){
-			request_timestamp = data[newIndex].timestamp;
-		}
-	});      
-}
+					return timeString;
+				}
 
 
 
-var update_chats_to = function () {
-	var from = $('#to_person_id').val();
-	var to = 33;
+				var sendChat = function (message, from, to, callback) {
 
-	if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
-		var offset = 60*15; // 15min
-		request_timestamp = parseInt( Date.now() / 1000 - offset );
-	}
-	$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
-		append_chat_data_to(data);	
+					$.getJSON('<?php echo base_url(); ?>index.php/api/send_message?message=' + message + '&from=' + from + '&to=' + to + '&nickname=' + $('#nickname').val() + '&guid=' + getCookie('user_guid'), function (data){
+						callback();
+					});
+				}
 
-		var newIndex = data.length-1;
-		if(typeof(data[newIndex]) != 'undefined'){
-			request_timestamp = data[newIndex].timestamp;
-		}
-	});      
-}
+				var append_chat_data = function (chat_data) {
+					chat_data.forEach(function (data) {
+						var is_me = data.guid == getCookie('user_guid');
+
+						if(is_me){
+							var html = '<li class="right clearfix">';
+							html += '	<span class="chat-img pull-right">';
+							html += '		<img src="http://placehold.it/50/FA6F57/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
+							html += '	</span>';
+							html += '	<div class="chat-body clearfix">';
+							html += '		<div class="header">';
+							html += '			<small class="text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
+							html += '			<strong class="pull-right primary-font">' + data.nickname + '</strong>';
+							html += '		</div>';
+							html += '		<p>' + data.message + '</p>';
+							html += '	</div>';
+							html += '</li>';
+						}else{
+
+							var html = '<li class="left clearfix">';
+							html += '	<span class="chat-img pull-left">';
+							html += '		<img src="http://placehold.it/50/55C1E7/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
+							html += '	</span>';
+							html += '	<div class="chat-body clearfix">';
+							html += '		<div class="header">';
+							html += '			<strong class="primary-font">' + data.nickname + '</strong>';
+							html += '			<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
+
+							html += '		</div>';
+							html += '		<p>' + data.message + '</p>';
+							html += '	</div>';
+							html += '</li>';
+						}
+						$("#received").html( $("#received").html() + html);
+					});  
+
+					var d = $('#received');
+					d.scrollTop(d.prop("scrollHeight"));	
 
 
-var append_chat_data_to = function (chat_data) {
-	chat_data.forEach(function (data) {
-		var is_me = data.guid == getCookie('user_guid');
-		
+				}
 
-			var html = '<li class="left clearfix">';
-			html += '	<span class="chat-img pull-left">';
-			html += '		<img src="http://placehold.it/50/55C1E7/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
-			html += '	</span>';
-			html += '	<div class="chat-body clearfix">';
-			html += '		<div class="header">';
-			html += '			<strong class="primary-font">' + data.nickname + '</strong>';
-			html += '			<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
-			
-			html += '		</div>';
-			html += '		<p>' + data.message + '</p>';
-			html += '	</div>';
-			html += '</li>';
-	
-		$("#received_to").html( $("#received_to").html() + html);
-	});
-  
-	$('#received_to').animate({ scrollTop: $('#received_to').height()}, 1000);
-}
+				var update_chats = function () {
+					var from = $('#from_person_id').val();
+					var to = $('#to_person_id').val();;
+
+					if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
+						var offset = 60*15; // 15min
+						request_timestamp = parseInt( Date.now() / 1000 - offset );
+					}
+					$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
+						append_chat_data(data);	
+
+						var newIndex = data.length-1;
+						if(typeof(data[newIndex]) != 'undefined'){
+							request_timestamp = data[newIndex].timestamp;
+						}
+					});      
+				}
 
 
-$('#submit-msg').click(function (e) {
-	e.preventDefault();
-	
-	var $field = $('#message');
-	var data = $field.val();
-	var from_person = $('#from_person_id').val();
-	var to_person = 33;
 
-	$field.addClass('disabled').attr('disabled', 'disabled');
-	sendChat(data, from_person, to_person , function (){
-		$field.val('').removeClass('disabled').removeAttr('disabled');
-	});
-});
+				var update_chats_to = function () {
+					var from = $('#from_person_id').val();
+					var to = $('#to_person_id').val();;
 
-$('#message').keyup(function (e) {
-	if (e.which == 13) {
-		$('#submit-msg').trigger('click');
-	}
-});
+					if(typeof(request_timestamp) == 'undefined' || request_timestamp == 0){
+						var offset = 60*15; // 15min
+						request_timestamp = parseInt( Date.now() / 1000 - offset );
+					}
+					$.getJSON('<?php echo base_url(); ?>index.php/api/get_messages_to?timestamp=' + request_timestamp + '&from=' + from + '&to=' + to, function (data){
+						append_chat_data_to(data);	
 
-setInterval(function (){
-	update_chats();
-}, 1500);			
-			
-			
-			
-			
+						var newIndex = data.length-1;
+						if(typeof(data[newIndex]) != 'undefined'){
+							request_timestamp = data[newIndex].timestamp;
+						}
+					});      
+				}
+
+
+				var append_chat_data_to = function (chat_data) {
+					chat_data.forEach(function (data) {
+						var is_me = data.guid == getCookie('user_guid');
+
+
+							var html = '<li class="left clearfix">';
+							html += '	<span class="chat-img pull-left">';
+							html += '		<img src="http://placehold.it/50/55C1E7/fff&text=' + data.nickname.slice(0,2) + '" alt="User Avatar" class="img-circle" />';
+							html += '	</span>';
+							html += '	<div class="chat-body clearfix">';
+							html += '		<div class="header">';
+							html += '			<strong class="primary-font">' + data.nickname + '</strong>';
+							html += '			<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + parseTimestamp(data.timestamp) + '</small>';
+
+							html += '		</div>';
+							html += '		<p>' + data.message + '</p>';
+							html += '	</div>';
+							html += '</li>';
+
+						$("#received_to").html( $("#received_to").html() + html);
+					});
+
+					$('#received_to').animate({ scrollTop: $('#received_to').height()}, 1000);
+				}
+
+
+				$('#submit-msg').click(function (e) {
+					e.preventDefault();
+
+					var $field = $('#message');
+					var data = $field.val();
+					var from_person = $('#from_person_id').val();
+					var to_person = $('#to_person_id').val();
+
+					$field.addClass('disabled').attr('disabled', 'disabled');
+					sendChat(data, from_person, to_person , function (){
+						$field.val('').removeClass('disabled').removeAttr('disabled');
+					});
+				});
+
+				$('#message').keyup(function (e) {
+					if (e.which == 13) {
+						$('#submit-msg').trigger('click');
+					}
+				});
+
+				setInterval(function (){
+					update_chats();
+					update_chats_to();
+				}, 1500);			
+
+
+
+
+				$('select#to_person_id').on('change', function() {
+				  if(this.value !== ""){
+					$('#message').prop('disabled', false);			
+					$('#submit-msg').prop('disabled', false);
+					$('#to_user').empty();
+					$('#to_user').append($("select#to_person_id option:selected").text());
+				  }else{
+					$('#message').prop('disabled', 'disabled');			
+					$('#submit-msg').prop('disabled', 'disabled');	 
+					$('#to_user').empty();
+				  }
+
+				  $("#received_to").html("");
+				  $("#received").html("");
+				});
+
+
+				$('#message').prop('disabled', 'disabled');			
+				$('#submit-msg').prop('disabled', 'disabled');				
+
+
 			
 			
 			

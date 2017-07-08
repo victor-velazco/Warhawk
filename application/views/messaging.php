@@ -4,14 +4,32 @@
 	$from_person_id = $this->session->userdata('data')['person_id'];
 	$nickname = $this->session->userdata('data')['first_name'];
 	$image = $this->session->userdata('data')['image'];
+
 ?>
-		<div class="col-md-offset-1 col-md-10 container" style="top:102px; padding-left:2px; padding-right:2px;">
+		<div class="col-md-offset-1 col-md-10 container" style="top:102px; padding-left:2px; padding-right:2px;">			
 			<div class="modal-body">
 				<div id="div-announcement-msg">
 					<h3><div id="icon-announcement-msg" class="glyphicon glyphicon-chevron-right"></div>
 					<span id="text-announcement-msg">University Messaging System</span></h3>
-					<br><br>
-                    <div class="col-md-5">
+					<br><br>	
+					<div class="col-md-10">
+ <div class="form-group">
+  <label for="to_person_id">Select user to chat:</label>
+  <select class="form-control" id="to_person_id">
+	  <option></option>
+<?php
+	foreach ($persons->result() as $row) { 
+		if($from_person_id != $row->person_id){
+?>				
+	  <option value="<?= $row->person_id ?>"><?= $row->first_name . " " . $row->last_name ?></option>
+<?php		
+		}
+	}
+?>
+  </select>
+</div> 						
+					</div>
+                    <div class="col-md-5">							
                         <div class="panel panel-info">
 							<div class="panel-heading">
 								<div style="text-align: right; position: absolute; right: 30px;"><img width="24" height="24" src="<?= base_url() ?>assets/img/<?= $image ?>"></div>
@@ -32,15 +50,15 @@
 									</button>									
                                 </div>
 							</div>
-                        </div>						
-						
-
+                        </div>												
                     </div>
                     <div class="col-md-5">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								<div style="text-align: right; position: absolute; right: 30px;"><img width="24" height="24" src="<?= base_url() ?>assets/img/<?= $image ?>"></div>
-								Administrator: Hi There!
+								<div style="text-align: right; position: absolute; right: 30px;"><img width="24" height="24" src="<?= base_url() ?>assets/img/alumini0.jpg"></div>
+								<h3 class="panel-title" id="to_user">
+									To:
+								</h3>
 							</div>
 							<div class="panel-body">
 								<ul class="chat" id="received_to"></ul>
@@ -48,10 +66,12 @@
 						</div>
                     </div>
 				</div>
-            </div>
+            </div>		
+			<div class="space-blank"></div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
-        <div class="space-blank"></div>
-        <div class="space-blank"></div>
+
 		
 
 	
